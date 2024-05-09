@@ -14,34 +14,34 @@ points:
         shift: [69, -100]
       rows:
         bottom:
-          row_net: P12
+          row_net: P9
         home:
-          row_net: P11
+          row_net: P5
         top:
-          row_net: P10
+          row_net: P3
       columns:
         pinky:
           rows.thumb.skip: true
           key:
-            col_net: P5
+            col_net: P8
             mirror.col_net: P28
         ring:
           key:
             stagger: 16
-            col_net: P6
+            col_net: P7
             mirror.col_net: P27
           rows.thumb.skip: true
         middle.key:
           stagger: 7
-          col_net: P7
+          col_net: P6
           mirror.col_net: P26
         index.key:
           stagger: -5
-          col_net: P8
+          col_net: P4
           mirror.col_net: P22
         far.key:
           stagger: -5
-          col_net: P9
+          col_net: P2
           mirror.col_net: P21
     thumbrow:
       anchor:
@@ -49,16 +49,16 @@ points:
         shift: [0.25cx, -cy*2 + 7]
       rows:
         thumb:
-          row_net: P13
+          row_net: P10
       columns:
         middle.key:
-          col_net: P7
+          col_net: P6
           mirror.col_net: P26
         index.key:
-          col_net: P8
+          col_net: P4
           mirror.col_net: P22
         far.key:
-          col_net: P9
+          col_net: P2
           mirror.col_net: P21
   mirror:
     ref: board_index_top
