@@ -47,38 +47,46 @@ module.exports = {
   body: (p) => {
     const standard = `
       (module rp2040pico (layer F.Cu) (tedit 5B307E4C)
-      ${p.at /* parametric position */}
+        ${p.at /* parametric position */}
 
-      ${"" /* footprint reference */}
-      (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
-      (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
+        ${"" /* footprint reference */}
+        (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
+        (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
 
-      ${"" /* illustration of the (possible) USB port overhang */}
-      (fp_line (start -26.8 -4) (end -26.8 4) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -26.8 4) (end -20.8 4) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -20.8 4) (end -20.8 -4) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -20.8 -4) (end -26.8 -4) (layer Dwgs.User) (width 0.15))
+        ${"" /* illustration of the (possible) USB port overhang */}
+        (fp_line (start -26.8 -4) (end -26.8 4) (layer Dwgs.User) (width 0.15))
+        (fp_line (start -26.8 4) (end -26.2 4) (layer Dwgs.User) (width 0.15))
+        (fp_line (start -26.2 4) (end -26.2 -4) (layer Dwgs.User) (width 0.15))
+        (fp_line (start -26.2 -4) (end -26.8 -4) (layer Dwgs.User) (width 0.15))
 
-      ${"" /* component outline */}
-      (fp_line (start -25.5 10.5) (end 25.5 10.5) (layer F.SilkS) (width 0.15))
-      (fp_line (start 25.5 10.5) (end 25.5 -10.5) (layer F.SilkS) (width 0.15))
-      (fp_line (start 25.5 -10.5) (end -25.5 -10.5) (layer F.SilkS) (width 0.15))
-      (fp_line (start -25.5 -10.5) (end -25.5 10.5) (layer F.SilkS) (width 0.15))
+        (fp_line (start -26.2 -3.5) (end -26.2 3.5) (layer Dwgs.User) (width 0.15))
+        (fp_line (start -26.2 3.5) (end -20.8 3.5) (layer Dwgs.User) (width 0.15))
+        (fp_line (start -20.8 3.5) (end -20.8 -3.5) (layer Dwgs.User) (width 0.15))
+        (fp_line (start -20.8 -3.5) (end -26.2 -3.5) (layer Dwgs.User) (width 0.15))
 
-      (fp_line (start -25.5 10.5) (end 25.5 10.5) (layer B.SilkS) (width 0.15))
-      (fp_line (start 25.5 10.5) (end 25.5 -10.5) (layer B.SilkS) (width 0.15))
-      (fp_line (start 25.5 -10.5) (end -25.5 -10.5) (layer B.SilkS) (width 0.15))
-      (fp_line (start -25.5 -10.5) (end -25.5 10.5) (layer B.SilkS) (width 0.15))
-      `;
+        ${"" /* component outline */}
+        (fp_line (start -25.5 10.5) (end 25.5 10.5) (layer F.SilkS) (width 0.15))
+        (fp_line (start 25.5 10.5) (end 25.5 -10.5) (layer F.SilkS) (width 0.15))
+        (fp_line (start 25.5 -10.5) (end -25.5 -10.5) (layer F.SilkS) (width 0.15))
+        (fp_line (start -25.5 -10.5) (end -25.5 10.5) (layer F.SilkS) (width 0.15))
+
+        (fp_line (start -25.5 10.5) (end 25.5 10.5) (layer B.SilkS) (width 0.15))
+        (fp_line (start 25.5 10.5) (end 25.5 -10.5) (layer B.SilkS) (width 0.15))
+        (fp_line (start 25.5 -10.5) (end -25.5 -10.5) (layer B.SilkS) (width 0.15))
+        (fp_line (start -25.5 -10.5) (end -25.5 10.5) (layer B.SilkS) (width 0.15))
+    `;
+
     function pin_names(def_neg, def_pos, layer) {
       const effects = `(effects
         (font (size 0.8 0.8) (thickness 0.15))
         ${layer == "B.SilkS" ? "(justify mirror)" : ""}
       )`;
+      const mounting_holes = true;
+      const mounting_holes_offset = 0.7;
       return `
         ${"" /* pin names */}
-        (fp_text user P00 (at -24.13 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
-        (fp_text user P01 (at -21.59 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user P00 (at ${mounting_holes ? -21.59 + mounting_holes_offset : -24.13} ${def_pos}${mounting_holes ? 6.4 / 2 : 6.4} ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user P01 (at ${mounting_holes ? -21.59 + mounting_holes_offset : -21.59} ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user GND (at -19.05 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user P02 (at -16.51 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user P03 (at -13.97 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
@@ -95,11 +103,11 @@ module.exports = {
         (fp_text user P12 (at 13.97 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user P13 (at 16.51 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user GND (at 19.05 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
-        (fp_text user P14 (at 21.59 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
-        (fp_text user P15 (at 24.13 ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user P14 (at ${mounting_holes ? 21.59 - mounting_holes_offset : 21.59} ${def_pos}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user P15 (at ${mounting_holes ? 21.59 - mounting_holes_offset : 24.13} ${def_pos}${mounting_holes ? 6.4 / 2 : 6.4} ${p.r + 90}) (layer ${layer}) ${effects})
 
-        (fp_text user VBUS (at -24.13 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
-        (fp_text user VSYS (at -21.59 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user VBUS (at ${mounting_holes ? -21.59 + mounting_holes_offset : -24.13} ${def_neg}${mounting_holes ? 6.4 / 2 : 6.4} ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user VSYS (at ${mounting_holes ? -21.59 + mounting_holes_offset : -21.59} ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user GND (at -19.05 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user 3V3E (at -16.51 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user 3V3O (at -13.97 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
@@ -116,12 +124,13 @@ module.exports = {
         (fp_text user P19 (at 13.97 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user P18 (at 16.51 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
         (fp_text user GND (at 19.05 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
-        (fp_text user P17 (at 21.59 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
-        (fp_text user P16 (at 24.13 ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user P17 (at ${mounting_holes ? 21.59 - mounting_holes_offset : 21.59} ${def_neg}6.4 ${p.r + 90}) (layer ${layer}) ${effects})
+        (fp_text user P16 (at ${mounting_holes ? 21.59 - mounting_holes_offset : 24.13} ${def_neg}${mounting_holes ? 6.4 / 2 : 6.4} ${p.r + 90}) (layer ${layer}) ${effects})
 
         (fp_text user DEBUG (at 21.59 0 ${p.r + 90}) (layer ${layer}) ${effects})
       `;
     }
+
     function pins(def_neg, def_pos) {
       return `
         (pad 1 thru_hole circle (at -24.13 ${def_pos}8.89 0) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P0})
@@ -171,20 +180,56 @@ module.exports = {
         (pad 43 thru_hole circle (at 24.13 ${def_pos}2.54 0) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.SWDIO})
       `;
     }
+
+    function mounting_holes() {
+      const drill = 2.1;
+      const outline = 3.8;
+      const vias_drill = 0.4;
+
+      function mounting_hole(x, y) {
+        const hole = `
+          (pad "" thru_hole circle (at ${x} ${y} 0) (size ${outline} ${outline}) (drill ${drill}) (layers *.Cu *.Mask *.SilkS) ${p.GND})
+        `;
+        let vias = "";
+        for (let i = 0; i < 8; i++) {
+          const angle = (i * Math.PI) / 4;
+          const via_x = x + Math.cos(angle) * ((outline + drill) / 4);
+          const via_y = y + Math.sin(angle) * ((outline + drill) / 4);
+          vias += `
+            (pad "" thru_hole circle locked (at ${via_x} ${via_y}) (size ${vias_drill * 1.5} ${vias_drill * 1.5}) (drill ${vias_drill}) (layers *.Cu *.Mask) ${p.GND})
+          `;
+        }
+
+        return `
+          ${hole}
+          ${vias}
+        `;
+      }
+
+      return `
+        ${mounting_hole(-23.5, -5.7)}
+        ${mounting_hole(-23.5, 5.7)}
+        ${mounting_hole(23.5, -5.7)}
+        ${mounting_hole(23.5, 5.7)}
+      `;
+    }
+
     if (p.orientation == "down") {
       return `
         ${standard}
         ${pin_names("-", "", "F.SilkS")}
         ${pin_names("-", "", "B.SilkS")}
-        ${pins("-", "")})
-        `;
+        ${pins("-", "")}
+        ${mounting_holes()}
+      )`;
     } else {
       return `
         ${standard}
         ${pin_names("-", "", "F.SilkS")}
         ${pin_names("-", "", "B.SilkS")}
-        ${pins("", "-")})
-        `;
+        ${pins("", "-")}
+        ${mounting_holes()}
+      )`;
     }
   },
 };

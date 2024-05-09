@@ -14,15 +14,15 @@ module.exports = {
       (fp_text user ${p.value} (at 0 -1.47) (layer B.SilkS) (effects (font (size 0.5 0.5) (thickness 0.15)) (justify mirror)))
     `;
 
-    let pins = `
-        (pad "1" thru_hole circle locked (at 0 0) (size ${p.outline} ${p.outline}) (drill ${p.drill}) (layers *.Cu *.Mask) ${p.net})
+    let pin = `
+        (pad "1" thru_hole circle locked (at 0 0) (size ${p.outline} ${p.outline}) (drill ${p.drill}) (layers *.Cu *.SilkS *.Mask) ${p.net})
       `;
 
     return `
     (module "MountingHole_Pad_Via" (layer "F.Cu") (tedit 56DDB9C7)
       ${p.at /* parametric position */}
       ${silkscreen}
-      ${pins}
+      ${pin}
     )`;
   },
 };
