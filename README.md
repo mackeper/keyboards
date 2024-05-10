@@ -1,76 +1,51 @@
-# Template
+# Keyboards
 
 <div align="center">
 
-Template is repository template.
+Collection of my keyboards and keymaps.
 
 ![Logo](./.github/images/image.jpg)
 
-[![Docs](https://github.com/mackeper/SeshMgr.nvim/actions/workflows/docs.yml/badge.svg)](https://github.com/mackeper/SeshMgr.nvim/actions/workflows/docs.yml)
-[![Tests](https://github.com/mackeper/SeshMgr.nvim/actions/workflows/tests.yml/badge.svg)](https://github.com/mackeper/SeshMgr.nvim/actions/workflows/tests.yml)
-
-[Introduction](#introduction-wave) •
-[Features](#features-sparkles) •
-[Installation](#installation-package) •
-[Configuration](#configuration-gear) •
-[Contributing](#contributing-tada) •
+[Keyboards](#keyboards-keyboard) •
+[Dependencies](#dependencies-package) •
 [Related Projects](#related-projects-link)
 
 </div>
 
-## Introduction :wave:
+## Keyboards :keyboard:
 
-Some intruduction text.
+#### Fat cruiser
 
-## Features :sparkles:
+* [v1](./fat_cruiser/v1/README.md)
+  <details>
+  <summary>Preview</summary>
 
-Overview of the features.
+  ![Logo](./.github/images/image.jpg)
 
-### Feature 1 :keyboard:
+  </details>
 
-| Command | Description |
-:-------------------------:|:-------------------------:
-Command 1 | Description 1
-Command 2 | Description 2
+## Dependencies :package:
 
-### Feature 2 :telescope:
+* [KiCad](https://www.kicad.org/)
+* [Ergogen](https://github.com/ergogen/ergogen)
+  * Install with `npm install -g ergogen`
 
-- `item 1` - Description 1
-- `item 2` - Description 2
-- `item 3` - Description 3
+## Miscellanceous :sparkles:
 
-## Installation :package:
+### Vim magic
 
-<details>
-<summary>With some package manager</summary>
+Useful find and replace to add a value to all the coordinates in a KiCad file.
 
-```bash
-sudo apt install <package>
+```Vim
+:'<,'>s/-*\d\+\.\d\+/\=str2float(submatch(0))+13.97/`
 ```
 
-</details>
+### KiCad Preferences
 
-## Configuration :gear:
+Set the rotation step to the same value as your keyboard's rotation.
 
-<details>
-<summary>Example</summary>
-
-```bash
-example
-```
-
-</details>
-
-### Default configuration
-
-```bash
-default
-```
-
-## Contributing :tada:
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md)
+![KiCad Preferences](./.github/images/kicad_rotation_preferences.png)
 
 ## Related Projects :link:
 
-- Project 1
+* <https://github.com/benvallack/ergogen>
