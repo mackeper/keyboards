@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Logo](./images/image.jpg)
+![Logo](./images/fat_cruiser_v1.png)
 
 </div>
 
