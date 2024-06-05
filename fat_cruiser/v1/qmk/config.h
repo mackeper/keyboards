@@ -19,6 +19,12 @@
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
 
+// Delay before sending tap, allows for tap-hold or tap-dance.
+#undef TAPPING_TERM
 #define TAPPING_TERM 300
+
+// Mouse
+#undef MOUSEKEY_MAX_SPEED
 #define MOUSEKEY_MAX_SPEED 4
+#undef MOUSEKEY_TIME_TO_MAX
 #define MOUSEKEY_TIME_TO_MAX 20
