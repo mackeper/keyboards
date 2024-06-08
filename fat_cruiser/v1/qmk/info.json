@@ -10,7 +10,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "deferred_exec": true
     },
     "matrix_pins": {
         "cols": [

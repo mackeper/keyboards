@@ -12,6 +12,7 @@ enum Layer {
     _SYMBOLS,
     _FUNCTION_KEYS,
     _GAMING,
+    _GAMING_UTIL,
 };
 
 #define _KC_Å RALT(KC_W)
@@ -37,6 +38,81 @@ enum Layer {
 #define _LT_TAB LT(_SYMBOLS, KC_TAB)
 #define _LT_DEL LT(_FUNCTION_KEYS, KC_DEL)
 
+static bool on_board_led_high = false;
+static bool on_board_led_blinking = false;
+static uint32_t blink_on_board_led_delay = 250;
+
+void reset_on_board_led(void) {
+    gpio_write_pin_low(GP25);
+    on_board_led_high = false;
+}
+
+void set_on_board_led(void) {
+    gpio_write_pin_high(GP25);
+    on_board_led_high = true;
+}
+
+/** Callback function for the timer
+ * Return 0 to stop the timer, or a positive integer to continue
+ */
+uint32_t blink_on_board_led(uint32_t trigger_time, void *cb_arg) {
+    if (!on_board_led_blinking) {
+        return blink_on_board_led_delay;
+    }
+
+    if (on_board_led_high) {
+        reset_on_board_led();
+    } else {
+        set_on_board_led();
+    }
+
+    return blink_on_board_led_delay;
+}
+
+void keyboard_pre_init_user(void) {
+    gpio_set_pin_output(GP25);
+    defer_exec(blink_on_board_led_delay, blink_on_board_led, NULL);
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    on_board_led_blinking = false;
+    reset_on_board_led();
+
+    switch (get_highest_layer(state)) {
+        case _QWERTY:
+            break;
+        case _NAVIGATION:
+            on_board_led_blinking = true;
+            break;
+        case _MOUSE:
+            on_board_led_blinking = true;
+            break;
+        case _MEDIA:
+            on_board_led_blinking = true;
+            break;
+        case _NUMBERS:
+            on_board_led_blinking = true;
+            break;
+        case _SYMBOLS:
+            on_board_led_blinking = true;
+            break;
+        case _FUNCTION_KEYS:
+            on_board_led_blinking = true;
+            break;
+        case _GAMING:
+            set_on_board_led();
+            break;
+        case _GAMING_UTIL:
+            on_board_led_blinking = true;
+            break;
+        default:
+            /* gpio_write_pin_low(GP25); */
+            break;
+    }
+    return state;
+}
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * ┌───┬───┬───┬───┬───┐   ┌───┬───┬───┬───┬───┐
@@ -59,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO,  /*,*/   KC_NO,   KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
         KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO,  /*,*/   KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
         KC_NO,       KC_RALT, KC_COPY, KC_PSTE, KC_NO,  /*,*/   KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
-        KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_DEL, KC_ENT, KC_TAB
+        KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_ENT, KC_TAB, KC_DEL
     ),
     [_MOUSE] = LAYOUT_ortho_36(
         TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO,   /*,*/    KC_NO, KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
@@ -74,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_MUTE, KC_MPLY, KC_MSTP
     ),
     [_NUMBERS] = LAYOUT_ortho_36(
-        KC_ASTR, KC_7,    KC_8,    KC_9, KC_EQUAL, /*,*/  KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_ASTR, KC_7,    KC_8,    KC_9, KC_EQUAL, /*,*/  KC_NO, KC_NO,   KC_NO,   KC_NO,   QK_BOOT,
         KC_QUOT, KC_4,    KC_5,    KC_6, KC_PLUS,  /*,*/  KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
         KC_GRV,  KC_1,    KC_2,    KC_3, KC_0,     /*,*/  KC_NO, KC_NO,   KC_NO,   KC_RALT, KC_NO,
         KC_NO, KC_BSLS, KC_MINS, /*,*/ KC_NO,    KC_NO, KC_NO
@@ -92,9 +168,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,  KC_NO, KC_NO, /*,*/  KC_NO,   KC_NO, KC_NO
     ),
     [_GAMING] = LAYOUT_ortho_36(
-        KC_Q,   KC_W,   KC_E,    KC_R, KC_T,   /*,*/   KC_Y, KC_U, KC_I,    KC_O,   KC_P,
-        KC_A,   KC_S,   KC_D,    KC_F, KC_G,   /*,*/   KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
-        KC_Z,   KC_X,   KC_C,    KC_V, KC_B,   /*,*/   KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-        KC_ESC, KC_BSPC, KC_SPC, /*,*/ KC_DEL, KC_ENT, KC_TAB
+        KC_LSFT, KC_Q,   KC_W,   KC_E,    KC_R,   /*,*/   KC_Y, KC_U, KC_I,    KC_O,   KC_P,
+        KC_LCTL, KC_A,   KC_S,   KC_D,    KC_F,   /*,*/   KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
+        KC_TAB, KC_Z,   KC_X,   KC_C,    KC_V,   /*,*/   KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+        KC_ESC, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, KC_TAB, TO(_QWERTY)
+    ),
+    [_GAMING_UTIL] = LAYOUT_ortho_36(
+        KC_ASTR, KC_7,    KC_8,    KC_9, KC_EQUAL, /*,*/  KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_QUOT, KC_4,    KC_5,    KC_6, KC_PLUS,  /*,*/  KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_GRV,  KC_1,    KC_2,    KC_3, KC_0,     /*,*/  KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_NO, KC_NO, KC_NO, /*,*/ KC_NO,    KC_NO, KC_NO
     ),
 };
