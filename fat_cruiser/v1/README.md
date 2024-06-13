@@ -6,6 +6,8 @@
 
 </div>
 
+See [keymap layout](./qmk/readme.md).
+
 ### Images :camera:
 
 <details>
