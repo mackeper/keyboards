@@ -11,7 +11,8 @@
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
-        "deferred_exec": true
+        "deferred_exec": true,
+        "dynamic_macro": true
     },
     "matrix_pins": {
         "cols": [

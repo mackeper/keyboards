@@ -1,12 +1,15 @@
-# fat_cruiser
+# Fat_cruiser
 
-![fat_cruiser](imgur.com image replace me!)
+![fat_cruiser](../images/keymap.png)
 
-*A short description of the keyboard/project*
+*A single PCB keyboard that feels like a split one.*
+*Small enough to place on top of a laptop keyboard.*
 
-* Keyboard Maintainer: [Marcus Östling](https://github.com/mackeper)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+ Keyboard Maintainer: [Marcus Östling](https://github.com/mackeper)  
+ Hardware Supported: Raspberry Pi Pico  
+ Hardware Availability: *Links to where you can find this hardware*  
+
+## Build
 
 Make example for this keyboard (after setting up your build environment):
 
@@ -25,3 +28,9 @@ Enter the bootloader in 3 ways:
 * **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
 * **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
 * **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+
+## Develop
+
+### Generate compiler_commands.json
+
+`bear -- make fat_cruiser:default`
