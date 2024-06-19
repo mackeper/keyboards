@@ -1,0 +1,323 @@
+# https://www.youtube.com/watch?v=UKfeJrRIcxw
+
+units:
+  rotation: -10
+
+points:
+  rotate: rotation
+  key:
+    spread: cx
+    padding: cy
+  zones:
+    board:
+      anchor:
+        shift: [69, -100]
+      rows:
+        bottom:
+          row_net: P9
+        home:
+          row_net: P5
+        top:
+          row_net: P3
+      columns:
+        pinky:
+          rows.thumb.skip: true
+          key:
+            col_net: P8
+            mirror.col_net: P28
+        ring:
+          key:
+            stagger: 16
+            col_net: P7
+            mirror.col_net: P27
+          rows.thumb.skip: true
+        middle.key:
+          stagger: 7
+          col_net: P6
+          mirror.col_net: P26
+        index.key:
+          stagger: -5
+          col_net: P4
+          mirror.col_net: P22
+        far.key:
+          stagger: -5
+          col_net: P2
+          mirror.col_net: P21
+    thumbrow:
+      anchor:
+        ref: board_middle_bottom
+        shift: [0.25cx, -cy*2 + 7]
+      rows:
+        thumb:
+          row_net: P10
+      columns:
+        middle.key:
+          col_net: P6
+          mirror.col_net: P26
+        index.key:
+          col_net: P4
+          mirror.col_net: P22
+        far.key:
+          col_net: P2
+          mirror.col_net: P21
+  mirror:
+    ref: board_index_top
+    distance: 4.5*cx
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [cx, cy]
+  cutout:
+    - what: outline
+      name: raw
+      fillet: 2
+  keycap_outlines:
+    - what: rectangle
+      size: [cx-0.5, cy-0.5]
+      where: true
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: board_pinky_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: board_pinky_top
+          shift: [0.5cx, 0.5cy]
+        - ref: board_ring_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: board_ring_top
+          shift: [0.5cx, 0.5cy]
+        - ref: board_middle_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: board_middle_top
+          shift: [0.5cx, 0.5cy]
+        - ref: board_index_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: board_index_top
+          shift: [0.5cx, 0.5cy]
+        - ref: board_far_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: board_far_top
+          shift: [0.5cx, 0.5cy]
+        - ref: board_far_top
+          shift: [0.5cx, 0.3cy]
+        - ref: mirror_board_far_top
+          shift: [0.5cx, 0.3cy]
+        - ref: mirror_board_far_top
+          shift: [0.5cx, 0.5cy]
+        - ref: mirror_board_far_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: mirror_board_index_top
+          shift: [0.5cx, 0.5cy]
+        - ref: mirror_board_index_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: mirror_board_middle_top
+          shift: [0.5cx, 0.5cy]
+        - ref: mirror_board_middle_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: mirror_board_ring_top
+          shift: [0.5cx, 0.5cy]
+        - ref: mirror_board_ring_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: mirror_board_pinky_top
+          shift: [0.5cx, 0.5cy]
+        - ref: mirror_board_pinky_top
+          shift: [-0.5cx, 0.5cy]
+        - ref: mirror_board_pinky_bottom
+          shift: [-0.5cx, -0.5cy]
+        - ref: mirror_board_pinky_bottom
+          shift: [1.4cx, -0.5cy]
+        - ref: mirror_thumbrow_middle_thumb
+          shift: [-0.5cx, -0.5cy]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.5cx, -0.5cy]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.5cx, -0.30cy]
+        - ref: thumbrow_far_thumb
+          shift: [0.5cx, -0.30cy]
+        - ref: thumbrow_far_thumb
+          shift: [0.5cx, -0.5cy]
+        - ref: thumbrow_middle_thumb
+          shift: [-0.5cx, -0.5cy]
+        - ref: board_pinky_bottom
+          shift: [1.4cx, -0.5cy]
+        - ref: board_pinky_bottom
+          shift: [-0.5cx, -0.5cy]
+  cutout_board:
+    - what: outline
+      name: board
+      fillet: 1.5
+
+pcbs:
+  main:
+    outlines:
+      main:
+        outline: cutout_board
+    footprints:
+      choc:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: false
+          from: "{{col_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      rp2040:
+        what: rp2040pico
+        params:
+         orientation: "down"
+        where:
+          ref.aggregate.parts: [board_far_home, mirror_board_far_home]
+          shift: [0, -10]
+          rotate: -90
+      text_left:
+        what: text
+        where:
+          ref: board_pinky_bottom
+          shift: [cx, -0.45cy]
+        params:
+          text: "Fat Cruiser v1.0"
+          rotation: rotation
+      text_right:
+        what: text
+        where:
+          ref: mirror_board_pinky_bottom
+          shift: [cx, -0.45cy]
+        params:
+          text: "by Marcus Östling"
+          rotation: -rotation
+      m2_1:
+        what: mountinghole
+        where:
+          ref: board_pinky_bottom
+          shift: [0.25cx, 0.5cy]
+        params:
+          class: "m1"
+      m2_1_mirror:
+        what: mountinghole
+        where:
+          ref: mirror_board_pinky_bottom
+          shift: [0.25cx, 0.5cy]
+        params:
+          class: "m1"
+      m2_2:
+        what: mountinghole
+        where:
+          ref: board_far_bottom
+          shift: [0, -0.5cy]
+        params:
+          class: "m1"
+      m2_2_mirror:
+        what: mountinghole
+        where:
+          ref: mirror_board_far_bottom
+          shift: [0, -0.5cy]
+        params:
+          class: "m1"
+      m2_3:
+        what: mountinghole
+        where:
+          ref: board_far_top
+          shift: [0.25cx, -0.5cy]
+        params:
+          class: "m1"
+      m2_3_mirror:
+        what: mountinghole
+        where:
+          ref: mirror_board_far_top
+          shift: [0.25cx, -0.5cy]
+        params:
+          class: "m1"
+      m2_4:
+        what: mountinghole
+        where:
+          ref: thumbrow_middle_thumb
+          shift: [0.5cx - 0.5, 0]
+        params:
+          class: "m1"
+      m2_4_mirror:
+        what: mountinghole
+        where:
+          ref: mirror_thumbrow_middle_thumb
+          shift: [0.5cx - 0.5, 0]
+        params:
+          class: "m1"
+      m2_5:
+        what: mountinghole
+        where:
+          ref: board_ring_top
+          shift: [-0.25cx, -0.5cy]
+        params:
+          class: "m1"
+      m2_5_mirror:
+        what: mountinghole
+        where:
+          ref: mirror_board_ring_top
+          shift: [-0.25cx, -0.5cy]
+        params:
+          class: "m1"
+      m2_6:
+        what: mountinghole
+        where:
+          ref: board_index_top
+          shift: [-0.25cx, -0.5cy]
+        params:
+          class: "m1"
+      m2_6_mirror:
+        what: mountinghole
+        where:
+          ref: mirror_board_index_top
+          shift: [-0.25cx, -0.5cy]
+        params:
+          class: "m1"
+      p1:
+        what: pin
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [-2*2.54, -4]
+        params:
+          net: "GND"
+          value: "GND"
+      p2:
+        what: pin
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [-2.54, -4]
+        params:
+          net: "P16"
+          value: "P16"
+      p3:
+        what: pin
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [0, -4]
+        params:
+          net: "P17"
+          value: "P17"
+      p4:
+        what: pin
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [2.54, -4]
+        params:
+          net: "P18"
+          value: "P18"
+      p5:
+        what: pin
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [2*2.54, -4]
+        params:
+          net: "P19"
+          value: "P19"
+

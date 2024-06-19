@@ -36,12 +36,3 @@ From within `fat_cruiser/v1/`:
 | 100 SMT Diodes                                          | €2.49                  | [splitkb](https://splitkb.com/products/smd-diodes?variant=42283984027907)                                                  |
 | Raspberry Pi Pico H                                     | €5.89                  | [elektrokit](https://www.electrokit.com/en/raspberry-pi-pico-h)                                                            |
 | Total                                                   | €55.12                 |                                                                                                                            |
-
-## Remarks
-
-- Pinky stagger was too much.
-- Thumb cluster should be more centered. And probably angled a bit.
-- Could diodes be placed on the front between keys?
-- M1 holes seems to be too small. Change to M2?
-- Make MCU and switches hot swappable.
-- Might want a wider keyboard, increase the space between halfs.
