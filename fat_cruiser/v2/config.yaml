@@ -27,7 +27,7 @@ points:
             mirror.col_net: P28
         ring:
           key:
-            stagger: 16
+            stagger: 12
             col_net: P7
             mirror.col_net: P27
           rows.thumb.skip: true
@@ -46,7 +46,8 @@ points:
     thumbrow:
       anchor:
         ref: board_middle_bottom
-        shift: [0.25cx, -cy*2 + 7]
+        shift: [0.75cx, -2cy + 10]
+        rotate: -15
       rows:
         thumb:
           row_net: P10
@@ -62,7 +63,7 @@ points:
           mirror.col_net: P21
   mirror:
     ref: board_index_top
-    distance: 4.5*cx
+    distance: 5*cx
 
 outlines:
   raw:
@@ -156,14 +157,23 @@ pcbs:
       main:
         outline: cutout_board
     footprints:
-      choc:
+      switches:
         what: choc
         where: true
         params:
           keycaps: true
-          reverse: false
+          reverse: true
           from: "{{col_net}}"
           to: "{{colrow}}"
+      # switches_hotswap:
+      #   what: choc
+      #   where: true
+      #   params:
+      #     keycaps: true
+      #     reverse: true
+      #     from: "{{col_net}}"
+      #     to: "{{colrow}}"
+      #     hotswap: true
       diode:
         what: diode
         where: true
@@ -172,13 +182,13 @@ pcbs:
           to: "{{row_net}}"
         adjust:
           shift: [0, -5]
-      rp2040:
-        what: rp2040pico
+      mcu:
+        what: promicro
         params:
          orientation: "down"
         where:
           ref.aggregate.parts: [board_far_home, mirror_board_far_home]
-          shift: [0, -10]
+          shift: [0, 0]
           rotate: -90
       text_left:
         what: text
