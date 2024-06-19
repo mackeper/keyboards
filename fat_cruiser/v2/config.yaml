@@ -165,15 +165,7 @@ pcbs:
           reverse: true
           from: "{{col_net}}"
           to: "{{colrow}}"
-      # switches_hotswap:
-      #   what: choc
-      #   where: true
-      #   params:
-      #     keycaps: true
-      #     reverse: true
-      #     from: "{{col_net}}"
-      #     to: "{{colrow}}"
-      #     hotswap: true
+          hotswap: true
       diode:
         what: diode
         where: true
@@ -183,29 +175,31 @@ pcbs:
         adjust:
           shift: [0, -5]
       mcu:
-        what: promicro
+        what: rp2040pico
         params:
          orientation: "down"
         where:
           ref.aggregate.parts: [board_far_home, mirror_board_far_home]
-          shift: [0, 0]
+          shift: [0, -10]
           rotate: -90
       text_left:
         what: text
         where:
           ref: board_pinky_bottom
-          shift: [cx, -0.45cy]
+          shift: [1cx, -0.44cy]
         params:
-          text: "Fat Cruiser v1.0"
+          text: "Fat Cruiser v2.0"
           rotation: rotation
+          font_size: 1
       text_right:
         what: text
         where:
           ref: mirror_board_pinky_bottom
-          shift: [cx, -0.45cy]
+          shift: [1cx, -0.44cy]
         params:
           text: "by Marcus Östling"
           rotation: -rotation
+          font_size: 1
       m2_1:
         what: mountinghole
         where:
@@ -331,3 +325,7 @@ pcbs:
           net: "P19"
           value: "P19"
 
+cases:
+  bottom:
+    - name: cutout_board
+      extrude: 1

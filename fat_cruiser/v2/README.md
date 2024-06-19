@@ -20,11 +20,21 @@ See [keymap layout](./qmk/readme.md).
 <div align="center">
 </details>
 
+### Dependencies :gear:
+
+    - [KiCad](https://www.kicad.org/)
+    - [QMK](https://qmk.fm/)
+    - [Ergogen](https://github.com/berigora/ergogen)
+        - `npm install -g ergogen`
+    - [jscad](https://github.com/jscad/OpenJSCAD.org)
+        - `npm install -g @jscad/cli`
+    - [FreeRouting](https://freerouting.org/)
+
 ### Build :hammer:
 
 From within `fat_cruiser/v1/`:
 
-- `ergogen .`
+- `ergogen . && for i in output/cases/*.jscad; do npx @jscad/cli@1 "$i" -of stla; done`
 
 ### Parts :nut_and_bolt:
 
