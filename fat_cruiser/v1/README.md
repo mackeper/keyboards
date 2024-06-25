@@ -45,3 +45,4 @@ From within `fat_cruiser/v1/`:
 - M1 holes seems to be too small. Change to M2?
 - Make MCU and switches hot swappable.
 - Might want a wider keyboard, increase the space between halfs.
+- Add OLED screen or LEDs for layer indication.
