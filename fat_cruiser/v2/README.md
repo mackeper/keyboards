@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Logo](./images/fat_cruiser_v1.png)
+<!-- ![Logo](./images/fat_cruiser_v1.png) -->
 
 </div>
 
@@ -13,8 +13,6 @@ See [keymap layout](./qmk/readme.md).
 <details>
   <summary>Click to expand</summary>
   <div align="center">
-    <img src="./images/fat_cruiser_v1_front.png" />
-    <img src="./images/fat_cruiser_v1_back.png" />
     <img src="./images/kicad.jpg" />
   </div>
 <div align="center">

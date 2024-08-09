@@ -58,9 +58,13 @@ points:
         index.key:
           col_net: P4
           mirror.col_net: P22
+          splay: -14
+          origin: [-cx/2, -cy/2]
         far.key:
           col_net: P2
           mirror.col_net: P21
+          splay: -14
+          origin: [-cx/2, -cy/2]
   mirror:
     ref: board_index_top
     distance: 5*cx
