@@ -19,6 +19,11 @@
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
 
+
+// Remote desktop protocol problems
+#undef TAP_CODE_DELAY
+#define TAP_CODE_DELAY 10
+
 // Delay before sending tap, allows for tap-hold or tap-dance.
 #undef TAPPING_TERM
 #define TAPPING_TERM 300

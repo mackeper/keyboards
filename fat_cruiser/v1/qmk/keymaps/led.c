@@ -1,9 +1,11 @@
+#include <stdint.h>
 #include QMK_KEYBOARD_H
 #include "layers.h"
 #include "led.h"
 
 bool on_board_led_high = false;
 bool on_board_led_blinking = false;
+bool is_macro_recording = false;
 uint32_t blink_on_board_led_delay = 250;
 
 void reset_on_board_led(void) {
@@ -14,6 +16,18 @@ void reset_on_board_led(void) {
 void set_on_board_led(void) {
     gpio_write_pin_high(GP25);
     on_board_led_high = true;
+}
+
+void dynamic_macro_record_start_user_led(int8_t direction) {
+    on_board_led_blinking = true;
+    is_macro_recording = true;
+    blink_on_board_led_delay = 125;
+}
+
+void dynamic_macro_record_end_user_led(int8_t direction) {
+    on_board_led_blinking = false;
+    is_macro_recording = false;
+    blink_on_board_led_delay = 250;
 }
 
 /** Callback function for the timer
@@ -39,6 +53,10 @@ void keyboard_pre_init_user_led(void) {
 }
 
 void layer_state_set_user_led(layer_state_t state) {
+    if (is_macro_recording) {
+        return;
+    }
+
     on_board_led_blinking = false;
     reset_on_board_led();
 

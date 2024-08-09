@@ -6,13 +6,15 @@
     "diode_direction": "COL2ROW",
     "features": {
         "bootmagic": true,
+        "caps_word": true,
         "command": false,
         "console": false,
-        "extrakey": true,
-        "mousekey": true,
-        "nkro": true,
         "deferred_exec": true,
-        "dynamic_macro": true
+        "dynamic_macro": true,
+        "extrakey": true,
+        "key_lock": true,
+        "mousekey": true,
+        "nkro": true
     },
     "matrix_pins": {
         "cols": [

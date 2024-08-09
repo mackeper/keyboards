@@ -1,7 +1,7 @@
 # https://www.youtube.com/watch?v=UKfeJrRIcxw
 
 units:
-  rotation: -10
+  rotation: -12
 
 points:
   rotate: rotation
@@ -40,7 +40,7 @@ points:
           col_net: P4
           mirror.col_net: P22
         far.key:
-          stagger: -5
+          stagger: -2
           col_net: P2
           mirror.col_net: P21
     thumbrow:
@@ -162,7 +162,7 @@ pcbs:
         where: true
         params:
           keycaps: true
-          reverse: true
+          reverse: false
           from: "{{col_net}}"
           to: "{{colrow}}"
           hotswap: true
@@ -182,6 +182,11 @@ pcbs:
           ref.aggregate.parts: [board_far_home, mirror_board_far_home]
           shift: [0, -10]
           rotate: -90
+      display:
+        what: oled_ssd1306
+        where:
+          ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
+          shift: [0, -10]
       text_left:
         what: text
         where:

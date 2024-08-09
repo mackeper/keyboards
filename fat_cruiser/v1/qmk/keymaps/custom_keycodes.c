@@ -4,6 +4,7 @@
 #include "custom_keycodes.h"
 
 bool holding_v = false;
+bool holding_cut_ralt = false;
 
 bool process_record_user_custom(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
@@ -19,6 +20,21 @@ bool process_record_user_custom(uint16_t keycode, keyrecord_t* record) {
                 if (holding_v) {
                     unregister_code(KC_V);
                     holding_v = false;
+                }
+            }
+            return false;
+        case _CUT_RALT:
+            if (record->tap.count == 1 && record->event.pressed) { // press
+                tap_code16(C(KC_X));
+            }
+            if (record->tap.count == 0 && record->event.pressed) { // hold
+                register_code(KC_RALT);
+                holding_cut_ralt = true;
+            }
+            if (!record->event.pressed) { // release
+                if (holding_cut_ralt) {
+                    unregister_code(KC_RALT);
+                    holding_cut_ralt = false;
                 }
             }
             return false;
