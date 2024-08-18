@@ -59,12 +59,12 @@ points:
           col_net: P4
           mirror.col_net: P22
           splay: -14
-          origin: [-cx/2, -cy/2]
+          origin: [-0.5cx, -0.5cy]
         far.key:
           col_net: P2
           mirror.col_net: P21
           splay: -14
-          origin: [-cx/2, -cy/2]
+          origin: [-0.5cx, -0.5cy]
   mirror:
     ref: board_index_top
     distance: 5*cx
@@ -136,6 +136,10 @@ outlines:
           shift: [1.4cx, -0.5cy]
         - ref: mirror_thumbrow_middle_thumb
           shift: [-0.5cx, -0.5cy]
+        - ref: mirror_thumbrow_middle_thumb
+          shift: [0.5cx, -0.5cy]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [-0.5cx, -0.5cy]
         - ref: mirror_thumbrow_far_thumb
           shift: [0.5cx, -0.5cy]
         - ref: mirror_thumbrow_far_thumb
@@ -143,6 +147,10 @@ outlines:
         - ref: thumbrow_far_thumb
           shift: [0.5cx, -0.30cy]
         - ref: thumbrow_far_thumb
+          shift: [0.5cx, -0.5cy]
+        - ref: thumbrow_far_thumb
+          shift: [-0.5cx, -0.5cy]
+        - ref: thumbrow_middle_thumb
           shift: [0.5cx, -0.5cy]
         - ref: thumbrow_middle_thumb
           shift: [-0.5cx, -0.5cy]
@@ -190,7 +198,7 @@ pcbs:
         what: oled_ssd1306
         where:
           ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
-          shift: [0, -10]
+          shift: [0, -9.5]
       text_left:
         what: text
         where:
@@ -215,84 +223,84 @@ pcbs:
           ref: board_pinky_bottom
           shift: [0.25cx, 0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_1_mirror:
         what: mountinghole
         where:
           ref: mirror_board_pinky_bottom
           shift: [0.25cx, 0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_2:
         what: mountinghole
         where:
           ref: board_far_bottom
-          shift: [0, -0.5cy]
+          shift: [1.0cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_2_mirror:
         what: mountinghole
         where:
           ref: mirror_board_far_bottom
-          shift: [0, -0.5cy]
+          shift: [1.0cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_3:
         what: mountinghole
         where:
           ref: board_far_top
-          shift: [0.25cx, -0.5cy]
+          shift: [0.75cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_3_mirror:
         what: mountinghole
         where:
           ref: mirror_board_far_top
-          shift: [0.25cx, -0.5cy]
+          shift: [0.75cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_4:
         what: mountinghole
         where:
           ref: thumbrow_middle_thumb
-          shift: [0.5cx - 0.5, 0]
+          shift: [-1.0cx, 0]
         params:
-          class: "m1"
+          class: "m2"
       m2_4_mirror:
         what: mountinghole
         where:
           ref: mirror_thumbrow_middle_thumb
-          shift: [0.5cx - 0.5, 0]
+          shift: [-1.0cx, 0]
         params:
-          class: "m1"
+          class: "m2"
       m2_5:
         what: mountinghole
         where:
           ref: board_ring_top
           shift: [-0.25cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_5_mirror:
         what: mountinghole
         where:
           ref: mirror_board_ring_top
           shift: [-0.25cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_6:
         what: mountinghole
         where:
           ref: board_index_top
           shift: [-0.25cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       m2_6_mirror:
         what: mountinghole
         where:
           ref: mirror_board_index_top
           shift: [-0.25cx, -0.5cy]
         params:
-          class: "m1"
+          class: "m2"
       p1:
         what: pin
         where:
