@@ -87,23 +87,13 @@ outlines:
       operation: stack
       points:
         - ref: board_pinky_top
-          shift: [-0.5cx, 0.5cy]
-        - ref: board_pinky_top
-          shift: [0.5cx, 0.5cy]
+          shift: [-0.6cx, 0.5cy]
         - ref: board_ring_top
-          shift: [-0.5cx, 0.5cy]
-        - ref: board_ring_top
-          shift: [0.5cx, 0.5cy]
+          shift: [-0.5cx, 0.6cy]
         - ref: board_middle_top
           shift: [-0.5cx, 0.5cy]
         - ref: board_middle_top
           shift: [0.5cx, 0.5cy]
-        - ref: board_index_top
-          shift: [-0.5cx, 0.5cy]
-        - ref: board_index_top
-          shift: [0.5cx, 0.5cy]
-        - ref: board_far_top
-          shift: [-0.5cx, 0.5cy]
         - ref: board_far_top
           shift: [0.5cx, 0.5cy]
         - ref: board_far_top
@@ -112,26 +102,16 @@ outlines:
           shift: [0.5cx, 0.3cy]
         - ref: mirror_board_far_top
           shift: [0.5cx, 0.5cy]
-        - ref: mirror_board_far_top
-          shift: [-0.5cx, 0.5cy]
-        - ref: mirror_board_index_top
-          shift: [0.5cx, 0.5cy]
-        - ref: mirror_board_index_top
-          shift: [-0.5cx, 0.5cy]
         - ref: mirror_board_middle_top
           shift: [0.5cx, 0.5cy]
         - ref: mirror_board_middle_top
           shift: [-0.5cx, 0.5cy]
         - ref: mirror_board_ring_top
-          shift: [0.5cx, 0.5cy]
-        - ref: mirror_board_ring_top
-          shift: [-0.5cx, 0.5cy]
+          shift: [-0.5cx, 0.6cy]
         - ref: mirror_board_pinky_top
-          shift: [0.5cx, 0.5cy]
-        - ref: mirror_board_pinky_top
-          shift: [-0.5cx, 0.5cy]
+          shift: [-0.6cx, 0.5cy]
         - ref: mirror_board_pinky_bottom
-          shift: [-0.5cx, -0.5cy]
+          shift: [-0.6cx, -0.5cy]
         - ref: mirror_board_pinky_bottom
           shift: [1.4cx, -0.5cy]
         - ref: mirror_thumbrow_middle_thumb
@@ -157,7 +137,7 @@ outlines:
         - ref: board_pinky_bottom
           shift: [1.4cx, -0.5cy]
         - ref: board_pinky_bottom
-          shift: [-0.5cx, -0.5cy]
+          shift: [-0.6cx, -0.5cy]
   cutout_board:
     - what: outline
       name: board
@@ -170,7 +150,7 @@ pcbs:
         outline: cutout_board
     footprints:
       switches:
-        what: choc
+        what: choc_with_via
         where: true
         params:
           keycaps: true
@@ -199,6 +179,10 @@ pcbs:
         where:
           ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
           shift: [0, -9.5]
+        params:
+          VCC: "3V3_OUT"
+          SDA: "P14"
+          SCL: "P15"
       text_left:
         what: text
         where:
@@ -221,84 +205,70 @@ pcbs:
         what: mountinghole
         where:
           ref: board_pinky_bottom
-          shift: [0.25cx, 0.5cy]
+          shift: [0.75cx, -0.15cy]
         params:
           class: "m2"
       m2_1_mirror:
         what: mountinghole
         where:
           ref: mirror_board_pinky_bottom
-          shift: [0.25cx, 0.5cy]
+          shift: [0.75cx, -0.15cy]
         params:
           class: "m2"
       m2_2:
         what: mountinghole
         where:
           ref: board_far_bottom
-          shift: [1.0cx, -0.5cy]
+          shift: [1.0cx, 0cy]
         params:
           class: "m2"
       m2_2_mirror:
         what: mountinghole
         where:
           ref: mirror_board_far_bottom
-          shift: [1.0cx, -0.5cy]
+          shift: [1.0cx, 0cy]
         params:
           class: "m2"
       m2_3:
         what: mountinghole
         where:
           ref: board_far_top
-          shift: [0.75cx, -0.5cy]
+          shift: [0.75cx, 0cy]
         params:
           class: "m2"
       m2_3_mirror:
         what: mountinghole
         where:
           ref: mirror_board_far_top
-          shift: [0.75cx, -0.5cy]
+          shift: [0.75cx, 0cy]
         params:
           class: "m2"
       m2_4:
         what: mountinghole
         where:
-          ref: thumbrow_middle_thumb
-          shift: [-1.0cx, 0]
+          ref: thumbrow_far_thumb
+          shift: [0.7cx, 0.7cy]
         params:
           class: "m2"
       m2_4_mirror:
         what: mountinghole
         where:
-          ref: mirror_thumbrow_middle_thumb
-          shift: [-1.0cx, 0]
+          ref: mirror_thumbrow_far_thumb
+          shift: [0.7cx, 0.7cy]
         params:
           class: "m2"
       m2_5:
         what: mountinghole
         where:
           ref: board_ring_top
-          shift: [-0.25cx, -0.5cy]
+          shift: [-0.75cx, 0.05cy]
         params:
           class: "m2"
       m2_5_mirror:
         what: mountinghole
         where:
           ref: mirror_board_ring_top
-          shift: [-0.25cx, -0.5cy]
-        params:
-          class: "m2"
-      m2_6:
-        what: mountinghole
-        where:
-          ref: board_index_top
-          shift: [-0.25cx, -0.5cy]
-        params:
-          class: "m2"
-      m2_6_mirror:
-        what: mountinghole
-        where:
-          ref: mirror_board_index_top
-          shift: [-0.25cx, -0.5cy]
+          shift: [-0.75cx, 0.05cy]
         params:
           class: "m2"
       p1:

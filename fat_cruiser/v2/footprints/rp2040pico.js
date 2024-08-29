@@ -185,6 +185,7 @@ module.exports = {
       const drill = 2.1;
       const outline = 3.8;
       const vias_drill = 0.4;
+      const hasVias = false;
 
       function mounting_hole(x, y) {
         const hole = `
@@ -202,7 +203,7 @@ module.exports = {
 
         return `
           ${hole}
-          ${vias}
+          ${hasVias ? vias : ""}
         `;
       }
 

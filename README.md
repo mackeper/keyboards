@@ -20,7 +20,14 @@ Collection of my keyboards and keymaps.
   <details>
   <summary>Preview</summary>
 
-  ![Logo](./.github/images/image.jpg)
+  ![Logo](./fat_cruiser/v1/images/fat_cruiser_v1.png)
+
+  </details>
+* [v2](./fat_cruiser/v2/README.md)
+  <details>
+  <summary>Preview</summary>
+
+  ![Logo](./fat_cruiser/v2/images/kicad.jpg)
 
   </details>
 
@@ -29,6 +36,11 @@ Collection of my keyboards and keymaps.
 * [KiCad](https://www.kicad.org/)
 * [Ergogen](https://github.com/ergogen/ergogen)
   * Install with `npm install -g ergogen`
+* [QMK](https://qmk.fm/)
+  * Clone or fork the [QMK repository](https://github.com/qmk/qmk.fm)
+  * Optional: [Bear](https://github.com/rizsotto/Bear)
+    * sudo apt-get install bear
+    * bear -- make <keyboard>:<keymap>
 
 ## Miscellanceous :sparkles:
 

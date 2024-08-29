@@ -1,10 +1,11 @@
 // https://github.com/MvEerd/ergogen/blob/mveerd/src/footprints/mountinghole.js
 module.exports = {
   params: {
+    designator: "MH",
     class: "m2",
     drill: 2.2,
     outline: 4.4,
-    vias: true,
+    vias: false,
     vias_drill: 0.4,
     net: { type: "net", value: "GND" },
   },
@@ -49,7 +50,7 @@ module.exports = {
       ${silkscreen}
       ${courtyard}
       ${drill}
-      ${vias}
+      ${p.vias ? vias : ""}
     )`;
   },
 };

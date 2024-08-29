@@ -1,6 +1,6 @@
 module.exports = {
   params: {
-    designator: "R",
+    designator: "OLED",
     SDA: { type: "net", value: "SDA" },
     SCL: { type: "net", value: "SCL" },
     VCC: { type: "net", value: "VCC" },
@@ -20,7 +20,6 @@ module.exports = {
         ${layer == "B.SilkS" ? "(justify mirror)" : ""}
       )`;
 
-    console.log(p);
     const via = (n, x, y, net) => `
         (fp_text user ${net.name} (at ${x} ${y - 1.45} ) (layer F.SilkS) ${effects("F.SilkS")})
         (fp_text user ${net.name} (at ${x} ${y - 1.45} ) (layer B.SilkS) ${effects("B.SilkS")})
@@ -47,10 +46,10 @@ module.exports = {
             (fp_line (start ${-width / 2} ${height / 2}) (end ${-width / 2} ${-height / 2}) (layer B.SilkS) (width 0.1))
 
             ${"" /* mouting holes */} 
-            (pad 1 thru_hole circle (at ${-width / 2 + holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask)) 
-            (pad 2 thru_hole circle (at ${width / 2 - holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask)) 
-            (pad 3 thru_hole circle (at ${width / 2 - holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask))
-            (pad 4 thru_hole circle (at ${-width / 2 + holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask))
+            (pad 1 thru_hole circle (at ${-width / 2 + holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) 
+            (pad 2 thru_hole circle (at ${width / 2 - holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) 
+            (pad 3 thru_hole circle (at ${width / 2 - holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})
+            (pad 4 thru_hole circle (at ${-width / 2 + holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})
 
             ${"" /* vias */}
             ${via(5, -viasDistance * 1.5, height / 2 - 1.65, p.SDA)}

@@ -1,8 +1,8 @@
-# Fat Cruiser v1
+# Fat Cruiser v2
 
 <div align="center">
 
-<!-- ![Logo](./images/fat_cruiser_v1.png) -->
+<!-- ![Logo](./images/fat_cruiser_v2.png) -->
 
 </div>
 
@@ -30,7 +30,7 @@ See [keymap layout](./qmk/readme.md).
 
 ### Build :hammer:
 
-From within `fat_cruiser/v1/`:
+From within `fat_cruiser/v2/`:
 
 - `ergogen . && for i in output/cases/*.jscad; do npx @jscad/cli@1 "$i" -of stla; done`
 
