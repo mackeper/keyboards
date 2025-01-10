@@ -22,7 +22,7 @@
 
 // Remote desktop protocol problems, didn't help
 #undef TAP_CODE_DELAY
-#define TAP_CODE_DELAY 0
+#define TAP_CODE_DELAY 10
 
 // Delay before sending tap, allows for tap-hold or tap-dance.
 #undef TAPPING_TERM
