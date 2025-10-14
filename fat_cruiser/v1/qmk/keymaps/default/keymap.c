@@ -6,9 +6,10 @@
 #include "quantum.h"
 #include QMK_KEYBOARD_H
 
-#include "../layers.h"
-#include "../custom_keycodes.h"
-#include "../led.h"
+#include "../../features/layers.h"
+#include "../../features/custom_keycodes.h"
+#include "../../features/process_custom_keycodes.h"
+#include "../../features/led.h"
 
 #define _COPY LCTL(KC_C)
 #define _PASTE LCTL(KC_V)
@@ -82,10 +83,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /*,*/ KC_Y, KC_U,    KC_I,    KC_O,     KC_P,
         _A_LGUI, _S_LALT, _D_LCTL, _F_LSFT, KC_G, /*,*/ KC_H, _J_LSFT, _K_LCTL, _L_LALT,  _SC_LGUI,
         KC_Z,    _X_RALT, KC_C,    KC_V,    KC_B, /*,*/ KC_N, KC_M,    KC_COMM, _DT_RALT, KC_SLSH,
-        _LT_ESC, _LT_BSPC, _LT_SPC, /*,*/ _LT_ENT, _LT_TAB, _LT_DEL
+        _LT_ESC, _LT_BSPC, _LT_SPC, /*,*/ _FIX_ENTER, _LT_TAB, _LT_DEL
     ),
     [_NAVIGATION] = LAYOUT_ortho_36(
-        TO(_GAMING), KC_F13,    KC_F14,  KC_F15,  KC_F16, /*,*/ CW_TOGG, QK_LOCK, DM_PLY1, DM_PLY2,  KC_UNDO,
+        TO(_GAMING), KC_F13,    KC_F14,  KC_F15,  KC_F16, /*,*/ CW_TOGG, QK_LOCK, DM_PLY1, DM_PLY2,  _AUTO_CLICK,
         KC_LGUI,     KC_LALT,   KC_LCTL, KC_LSFT, KC_NO,  /*,*/ KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
         KC_NO,       _CUT_RALT, _COPY,   _PASTE,  KC_NO,  /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_ENT, KC_TAB, KC_DEL

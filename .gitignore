@@ -1,2 +1,5 @@
 build/
 output/
+
+.cache/
+compile_commands.json

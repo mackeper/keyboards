@@ -1,2 +1,3 @@
-SRC += keymaps/led.c
-SRC += keymaps/custom_keycodes.c
+SRC += features/led.c
+SRC += features/process_custom_keycodes.c
+SRC += features/auto_click.c
