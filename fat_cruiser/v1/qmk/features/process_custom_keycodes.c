@@ -56,7 +56,7 @@ bool process_record_user_custom(uint16_t keycode, keyrecord_t* record) {
 
         case _FIX_ENTER:
             if (record->tap.count == 1 && record->event.pressed) { // press
-                tap_code16(C(KC_ENTER));
+                tap_code16(KC_ENTER);
             }
             if (record->tap.count == 0 && record->event.pressed) { // hold
                 layer_on(_NUMBERS);

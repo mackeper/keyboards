@@ -167,22 +167,22 @@ pcbs:
         adjust:
           shift: [0, -5]
       mcu:
-        what: rp2040pico
+        what: nicenano2
         params:
          orientation: "down"
         where:
           ref.aggregate.parts: [board_far_home, mirror_board_far_home]
-          shift: [0, -10]
+          shift: [0, -0]
           rotate: -90
-      display:
-        what: oled_ssd1306
-        where:
-          ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
-          shift: [0, -9.5]
-        params:
-          VCC: "3V3_OUT"
-          SDA: "P14"
-          SCL: "P15"
+      # display:
+      #   what: oled_ssd1306
+      #   where:
+      #     ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
+      #     shift: [0, -9.5]
+      #   params:
+      #     VCC: "3V3_OUT"
+      #     SDA: "P14"
+      #     SCL: "P15"
       text_left:
         what: text
         where:
@@ -271,46 +271,64 @@ pcbs:
           shift: [-0.75cx, 0.05cy]
         params:
           class: "m2"
-      p1:
-        what: pin
-        where:
-          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
-          shift: [-2*2.54, -4]
-        params:
-          net: "GND"
-          value: "GND"
-      p2:
-        what: pin
-        where:
-          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
-          shift: [-2.54, -4]
-        params:
-          net: "P16"
-          value: "P16"
+      # p1:
+      #   what: pin
+      #   where:
+      #     ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+      #     shift: [-2*2.54, -4]
+      #   params:
+      #     net: "GND"
+      #     value: "GND"
+      # p2:
+      #   what: pin
+      #   where:
+      #     ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+      #     shift: [-2.54, -4]
+      #   params:
+      #     net: "P16"
+      #     value: "P16"
+      # p3:
+      #   what: pin
+      #   where:
+      #     ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+      #     shift: [0, -4]
+      #   params:
+      #     net: "P17"
+      #     value: "P17"
+      # p4:
+      #   what: pin
+      #   where:
+      #     ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+      #     shift: [2.54, -4]
+      #   params:
+      #     net: "P18"
+      #     value: "P18"
+      # p5:
+      #   what: pin
+      #   where:
+      #     ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+      #     shift: [2*2.54, -4]
+      #   params:
+      #     net: "P19"
+      #     value: "P19"
       p3:
-        what: pin
+        what: slider
         where:
           ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
-          shift: [0, -4]
+          shift: [0, -8]
+          rotate: 180
         params:
-          net: "P17"
-          value: "P17"
-      p4:
-        what: pin
+          to: "P17"
+          from: "P16"
+      reset_button:
+        what: button_2pin
         where:
           ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
-          shift: [2.54, -4]
+          shift: [0, 0]
+          rotate: 0
         params:
-          net: "P18"
-          value: "P18"
-      p5:
-        what: pin
-        where:
-          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
-          shift: [2*2.54, -4]
-        params:
-          net: "P19"
-          value: "P19"
+          to: "GND"
+          from: "RESET"
 
 cases:
   bottom:
