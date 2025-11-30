@@ -78,18 +78,6 @@ points:
     distance: 5*cx
 
 outlines:
-  raw:
-    - what: rectangle
-      where: true
-      size: [cx, cy]
-  cutout:
-    - what: outline
-      name: raw
-      fillet: 2
-  keycap_outlines:
-    - what: rectangle
-      size: [cx-0.5, cy-0.5]
-      where: true
   board:
     - what: polygon
       operation: stack
@@ -182,6 +170,11 @@ outlines:
     - what: outline
       name: board
       fillet: 1.5
+  cutout_keys:
+    - what: rectangle
+      where: true
+      size: [cx-4, cy-3]
+      fillet: 1
   board_with_padding:
     - what: polygon
       operation: stack
@@ -675,6 +668,9 @@ cases:
   _bottom:
     - name: cutout_board
       extrude: 1 # 1 mm thick
+  _keys:
+    - name: cutout_keys
+      extrude: 1
   _bottom_with_padding:
     - name: board_with_padding
       extrude: 1
@@ -716,3 +712,13 @@ cases:
     - what: case
       name: _wall
       operation: add
+  plate:
+    - what: case
+      name: _bottom
+      operation: add
+    - what: case
+      name: _keys
+      operation: subtract
+    - what: case
+      name: _mounting_holes
+      operation: subtract

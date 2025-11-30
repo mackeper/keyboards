@@ -43,7 +43,6 @@ See [keymap layout](./qmk/readme.md).
 - [jscad](https://github.com/jscad/OpenJSCAD.org)
     - `npm install -g @jscad/cli` (this does not work with ergogen generated jscad files yet)
     - `npm install -g @jscad/openjscad` (old version, but works with ergogen generated jscad files)
-- [FreeRouting](https://freerouting.org/)
 
 ### Build :hammer:
 
