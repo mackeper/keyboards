@@ -1,10 +1,15 @@
 meta:
-  engine: 4.1.0
   version: v2.0.0
   author: Marcus Östling
 
 units:
   rotation: -12
+  pcx: cx + 8
+  pcy: cy + 8
+  padding: 4
+  screwSize: 1 # M2 screws
+  insetSize: 2 # M2 screws
+  mountSize: 3 # M2 screws
 
 points:
   rotate: rotation
@@ -177,6 +182,268 @@ outlines:
     - what: outline
       name: board
       fillet: 1.5
+  board_with_padding:
+    - what: polygon
+      operation: stack
+      fillet: 2
+      points:
+        - ref: board_pinky_top
+          shift: [-0.6cx-padding, 0.6cy+padding] 
+        - ref: board_pinky_top
+          shift: [0cx-padding, 0.6cy+padding]
+        - ref: board_pinky_top
+          shift: [0cx-padding, 1cy+padding]
+        - ref: board_pinky_top
+          shift: [0.4cx-padding, 1cy+padding]
+        - ref: board_ring_top
+          shift: [-0.6cx-padding, 0.6cy+padding]
+        - ref: board_ring_top
+          shift: [0.4cx-padding, 0.6cy+padding]
+        - ref: board_middle_top
+          shift: [-0.6cx-padding, 0.6cy+padding]
+        - ref: board_middle_top
+          shift: [0.6cx+padding, 0.6cy+padding]
+        - ref: board_index_top
+          shift: [-0.4cx+padding, 0.62cy+padding]
+        - ref: board_index_top
+          shift: [0.57cx+0.9padding, 0.62cy+padding]
+        - ref: board_far_top
+          shift: [-0.4cx+1.2padding, 0.57cy+padding]
+        - ref: board_far_top
+          shift: [0.6cx+padding, 0.6cy+padding]
+        - ref: board_far_top
+          shift: [0.6cx+1.4padding, 0.4cy+padding]
+        # ----- mirrored -----
+        - ref: mirror_board_far_top
+          shift: [0.6cx+1.4padding, 0.4cy+padding]
+        - ref: mirror_board_far_top
+          shift: [0.6cx+padding, 0.6cy+padding]
+        - ref: mirror_board_far_top
+          shift: [-0.4cx+1.2padding, 0.57cy+padding]
+        - ref: mirror_board_index_top
+          shift: [0.57cx+0.9padding, 0.62cy+padding]
+        - ref: mirror_board_index_top
+          shift: [-0.4cx+padding, 0.62cy+padding]
+        - ref: mirror_board_middle_top
+          shift: [0.6cx+padding, 0.6cy+padding]
+        - ref: mirror_board_middle_top
+          shift: [-0.6cx-padding, 0.6cy+padding]
+        - ref: mirror_board_ring_top
+          shift: [0.4cx-padding, 0.6cy+padding]
+        - ref: mirror_board_ring_top
+          shift: [-0.6cx-padding, 0.6cy+padding]
+        - ref: mirror_board_pinky_top
+          shift: [0.4cx-padding, 1cy+padding]
+        - ref: mirror_board_pinky_top
+          shift: [0cx-padding, 1cy+padding]
+        - ref: mirror_board_pinky_top
+          shift: [0cx-padding, 0.6cy+padding]
+        - ref: mirror_board_pinky_top
+          shift: [-0.6cx-padding, 0.6cy+padding]
+        - ref: mirror_board_pinky_bottom
+          shift: [-0.6cx-padding, -0.6cy-padding]
+        - ref: mirror_board_pinky_bottom
+          shift: [1.86cx-padding, -0.6cy-padding]
+        - ref: mirror_thumbrow_middle_thumb
+          shift: [-0.6cx-padding, -0.6cy-padding]
+        - ref: mirror_thumbrow_middle_thumb
+          shift: [0.5cx-padding, -0.6cy-padding]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [-0.5cx-padding, -0.6cy-padding]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.5cx-padding, -0.6cy-padding]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.6cx-padding, -0.6cy-padding]
+        # - ref: mirror_thumbrow_far_thumb
+        #   shift: [0.6cx+padding, -0.3cy-padding]
+        # ----- original -----
+        # - ref: thumbrow_far_thumb
+        #   shift: [0.6cx+padding, -0.3cy-padding]
+        - ref: thumbrow_far_thumb
+          shift: [0.6cx-padding, -0.6cy-padding]
+        - ref: thumbrow_far_thumb
+          shift: [0.5cx-padding, -0.6cy-padding]
+        - ref: thumbrow_far_thumb
+          shift: [-0.5cx-padding, -0.6cy-padding]
+        - ref: thumbrow_middle_thumb
+          shift: [0.5cx-padding, -0.6cy-padding]
+        - ref: thumbrow_middle_thumb
+          shift: [-0.5cx-padding, -0.6cy-padding]
+        - ref: board_pinky_bottom
+          shift: [1.86cx-padding, -0.6cy-padding]
+        - ref: board_pinky_bottom
+          shift: [-0.6cx-padding, -0.6cy-padding]
+  mouting_holes:
+    - what: circle
+      radius: screwSize
+      where:
+        ref: board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: mirror_board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: board_far_bottom
+        shift: [0.9cx, 0cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: mirror_board_far_bottom
+        shift: [0.9cx, 0cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: board_far_top
+        shift: [0.8cx, 0cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: mirror_board_far_top
+        shift: [0.8cx, 0cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [-0.6cx, -0.25cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0.6cx, -0.25cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: board_ring_top
+        shift: [-0.75cx, 0.05cy]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: mirror_board_ring_top
+        shift: [-0.75cx, 0.05cy]
+  _mouting_holes_with_padding: # Copy of mouting_holes but with padding
+    - what: circle
+      radius: mountSize
+      where:
+        ref: board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: mirror_board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: board_far_bottom
+        shift: [0.9cx, 0cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: mirror_board_far_bottom
+        shift: [0.9cx, 0cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: board_far_top
+        shift: [0.8cx, 0cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: mirror_board_far_top
+        shift: [0.8cx, 0cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [-0.6cx, -0.25cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0.6cx, -0.25cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: board_ring_top
+        shift: [-0.75cx, 0.05cy]
+    - what: circle
+      radius: mountSize
+      where:
+        ref: mirror_board_ring_top
+        shift: [-0.75cx, 0.05cy]
+  _mouting_holes_with_padding2: 
+    - what: circle
+      radius: insetSize
+      where:
+        ref: board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: mirror_board_pinky_bottom
+        shift: [0.75cx, -0.15cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: board_far_bottom
+        shift: [0.9cx, 0cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: mirror_board_far_bottom
+        shift: [0.9cx, 0cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: board_far_top
+        shift: [0.8cx, 0cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: mirror_board_far_top
+        shift: [0.8cx, 0cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [-0.6cx, -0.25cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0.6cx, -0.25cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: board_ring_top
+        shift: [-0.75cx, 0.05cy]
+    - what: circle
+      radius: insetSize
+      where:
+        ref: mirror_board_ring_top
+        shift: [-0.75cx, 0.05cy]
+
+
+
 
 pcbs:
   fat_cruiser:
@@ -202,7 +469,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [0, 0.5cy]
+          shift: [0, -5]
       mcu:
         what: nicenano2
         params:
@@ -405,6 +672,47 @@ pcbs:
           pos: "B+"
 
 cases:
-  bottom:
+  _bottom:
     - name: cutout_board
+      extrude: 1 # 1 mm thick
+  _bottom_with_padding:
+    - name: board_with_padding
       extrude: 1
+  _outerWall:
+    - name: board_with_padding
+      extrude: 4
+  _innerWall:
+    - name: cutout_board
+      extrude: 4
+  _mounting_holes:
+    - name: mouting_holes
+      extrude: 4
+  _mounting_holes_with_padding:
+    - name: _mouting_holes_with_padding
+      extrude: 2
+  _mounting_holes_inset:
+    - name: _mouting_holes_with_padding2
+      extrude: 1
+  _wall:
+    - what: case
+      name: _outerWall
+      operation: add
+    - what: case
+      name: _innerWall
+      operation: subtract
+  case:
+    - what: case
+      name: _bottom_with_padding
+      operation: add
+    - what: case
+      name: _mounting_holes_with_padding
+      operation: add
+    - what: case
+      name: _mounting_holes_inset
+      operation: subtract
+    - what: case
+      name: _mounting_holes
+      operation: subtract
+    - what: case
+      name: _wall
+      operation: add
