@@ -47,6 +47,8 @@ module.exports = {
       ${"" /* footprint reference */}
       (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
       (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
+      (fp_text user "${p.ref}" (at 0 0) (layer F.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15))))
+      (fp_text user "${p.ref}" (at 0 0) (layer B.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15)) (justify mirror)))
 
       ${"" /* illustration of the (possible) USB port overhang */}
       (fp_line (start -19.304 -3.81) (end -14.224 -3.81) (layer Dwgs.User) (width 0.15))
@@ -59,6 +61,11 @@ module.exports = {
       (fp_line (start 15.24 8.89) (end 15.24 -8.89) (layer F.SilkS) (width 0.15))
       (fp_line (start 15.24 -8.89) (end -17.78 -8.89) (layer F.SilkS) (width 0.15))
       (fp_line (start -17.78 -8.89) (end -17.78 8.89) (layer F.SilkS) (width 0.15))
+
+      (fp_line (start -17.78 8.89) (end 15.24 8.89) (layer B.SilkS) (width 0.15))
+      (fp_line (start 15.24 8.89) (end 15.24 -8.89) (layer B.SilkS) (width 0.15))
+      (fp_line (start 15.24 -8.89) (end -17.78 -8.89) (layer B.SilkS) (width 0.15))
+      (fp_line (start -17.78 -8.89) (end -17.78 8.89) (layer B.SilkS) (width 0.15))
       `;
     const font_size = "(font (size 0.5 0.5) (thickness 0.1))";
     const left_pins = [
@@ -104,8 +111,8 @@ module.exports = {
       const pinText = pins
         .map((pin, i) => {
           return `
-            (fp_text user ${pin.name} (at  ${vertical_offset - 1.1} ${offsets[i]} ${p.r + 90}) (layer F.SilkS) (effects ${font_size}))
-            (fp_text user ${pin.name} (at  ${vertical_offset - 1.1} ${offsets[i]} ${p.r + 90}) (layer B.SilkS) (effects ${font_size} (justify mirror)))
+            (fp_text user ${pin.name} (at  ${vertical_offset - 1.18} ${offsets[i]} ${p.r + 90}) (layer F.SilkS) (effects ${font_size}))
+            (fp_text user ${pin.name} (at  ${vertical_offset - 1.18} ${offsets[i]} ${p.r + 90}) (layer B.SilkS) (effects ${font_size} (justify mirror)))
           `;
         })
         .join("");
@@ -128,8 +135,8 @@ module.exports = {
       const pinText = pins
         .map((pin, i) => {
           return `
-            (fp_text user ${pin.name} (at ${offsets[i] - 1.1} ${neg}7.62 ${p.r + 90}) (layer F.SilkS) (effects ${font_size}))
-            (fp_text user ${pin.name} (at ${offsets[i] - 1.1} ${neg}7.62 ${p.r + 90}) (layer B.SilkS) (effects ${font_size} (justify mirror)))
+            (fp_text user ${pin.name} (at ${offsets[i] - 1.18} ${neg}7.62 ${p.r + 90}) (layer F.SilkS) (effects ${font_size}))
+            (fp_text user ${pin.name} (at ${offsets[i] - 1.18} ${neg}7.62 ${p.r + 90}) (layer B.SilkS) (effects ${font_size} (justify mirror)))
           `;
         })
         .join("");

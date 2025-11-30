@@ -23,8 +23,8 @@ module.exports = {
 
     const courtyard_radius = p.drill + 0.25;
     const silkscreen = `
-      (fp_text reference "${p.ref}" (at 0 -3.2) (layer "F.SilkS") ${p.ref_hide}
-        (effects (font (size 1 1) (thickness 0.15)))
+      (fp_text reference "${p.ref}" (at 0 -2.8) (layer "F.SilkS") ${p.ref_hide}
+        (effects (font (size 0.8 0.8) (thickness 0.15)))
       )`;
 
     const courtyard = `

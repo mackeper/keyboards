@@ -14,7 +14,7 @@ module.exports = {
   body: (p) => `
     (module "text" (layer "F.SilkS") (tedit 5B307E4C)
         ${"" /* footprint reference */}
-        (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
+        ${"" /*(fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))*/}
         (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
 
         ${p.at /* parametric position */}

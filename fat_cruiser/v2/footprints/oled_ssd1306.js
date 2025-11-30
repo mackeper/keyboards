@@ -10,7 +10,7 @@ module.exports = {
     const width = 26.1;
     const height = 26.2;
     const holeDrillSize = 2;
-    const holeSize = 4;
+    const holeSize = 6;
     const viasDistance = 2.54;
     const viaDrillSize = 1.0922;
     const viaSize = 1.7526;
@@ -21,8 +21,8 @@ module.exports = {
       )`;
 
     const via = (n, x, y, net) => `
-        (fp_text user ${net.name} (at ${x} ${y - 1.45} ) (layer F.SilkS) ${effects("F.SilkS")})
-        (fp_text user ${net.name} (at ${x} ${y - 1.45} ) (layer B.SilkS) ${effects("B.SilkS")})
+        (fp_text user ${net.name} (at ${x} ${y - 2.5} 90) (layer F.SilkS) ${effects("F.SilkS")})
+        (fp_text user ${net.name} (at ${x} ${y - 2.5} 90) (layer B.SilkS) ${effects("B.SilkS")})
         (pad ${n} thru_hole circle (at ${x} ${y}) (size ${viaSize} ${viaSize}) (drill ${viaDrillSize}) (layers *.Cu *.Mask) ${net})
     `;
 
@@ -33,6 +33,8 @@ module.exports = {
             ${"" /* footprint reference */}
             (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
             (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
+            (fp_text user "${p.ref}" (at 0 0) (layer F.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15))))
+            (fp_text user "${p.ref}" (at 0 0) (layer B.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15)) (justify mirror)))
 
             ${"" /* symbols */}
             (fp_line (start ${-width / 2} ${-height / 2}) (end ${width / 2} ${-height / 2}) (layer F.SilkS) (width 0.1))
@@ -58,9 +60,9 @@ module.exports = {
             ${via(8, viasDistance * 1.5, height / 2 - 1.65, p.GND)}
 
 
-            ${"" /* courtyard */} 
-            (fp_text user "SSD1306" (at 0 ${height / 2 + 1} 0) (layer F.SilkS) ${effects("F.SilkS")})
-            (fp_text user "SSD1306" (at 0 ${height / 2 + 1} 0) (layer B.SilkS) ${effects("B.SilkS")})
+            ${"" /* text */} 
+            (fp_text user "SSD1306" (at 0 1 0) (layer F.SilkS) ${effects("F.SilkS")})
+            (fp_text user "SSD1306" (at 0 1 0) (layer B.SilkS) ${effects("B.SilkS")})
         )`;
   },
 };
