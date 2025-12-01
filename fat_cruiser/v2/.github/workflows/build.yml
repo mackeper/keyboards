@@ -1,0 +1,39 @@
+name: Build v2
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'fat_cruiser/v2/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'fat_cruiser/v2/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install ergogen
+      run: npm install -g ergogen
+
+    - name: Install openjscad
+      run: npm install -g @jscad/openjscad
+
+    - name: Run make
+      working-directory: fat_cruiser/v2
+      run: make
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: fat_cruiser/v2/output/
