@@ -4,6 +4,18 @@ OUTPUT_DIR := output
 KICAD_FILE := output/pcbs/fat_cruiser.kicad_pcb
 PAGE_SIZE := A4
 
+# Detect OS
+ifeq ($(OS),Windows_NT)
+    DETECTED_OS := Windows
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Darwin)
+        DETECTED_OS := macOS
+    else
+        DETECTED_OS := Linux
+    endif
+endif
+
 all: build update_kicad_file stl
 
 build:	
@@ -21,7 +33,13 @@ stl_v2:
 
 update_kicad_file:
 	@echo "\n=== Update kicad file ==="
-	nvim -es -n -u NONE +'%s/(paper "A3")/(paper "$(PAGE_SIZE)")/g' +wq $(KICAD_FILE)
+ifeq ($(DETECTED_OS),Windows)
+	powershell -Command "(Get-Content $(KICAD_FILE)) -replace '\(paper \"A3\"\)', '(paper \"$(PAGE_SIZE)\")' | Set-Content $(KICAD_FILE)"
+else ifeq ($(DETECTED_OS),macOS)
+	sed -i '' 's/(paper "A3")/(paper "$(PAGE_SIZE)")/g' $(KICAD_FILE)
+else
+	sed -i 's/(paper "A3")/(paper "$(PAGE_SIZE)")/g' $(KICAD_FILE)
+endif
 
 plot_pdf_wsl:
 	@echo "\n=== plot PDF ==="
