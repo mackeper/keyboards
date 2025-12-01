@@ -28,6 +28,9 @@ jobs:
     - name: Install openjscad
       run: npm install -g @jscad/openjscad
 
+    - name: Install neovim
+      run: sudo apt-get update && sudo apt-get install -y neovim
+
     - name: Run make
       working-directory: fat_cruiser/v2
       run: make
