@@ -29,5 +29,11 @@ module.exports = {
         ${"" /* THT terminals */}
         (pad 1 thru_hole circle (at -3.81 0 ${p.r}) (size 1.778 1.778) (drill 0.9906) (layers *.Cu *.Mask) ${p.to})
         (pad 2 thru_hole circle (at 3.81 0 ${p.r}) (size 1.905 1.905) (drill 0.9906) (layers *.Cu *.Mask) ${p.from})
+
+        ${"" /* segments from SMD pads to THT pads */}
+        (segment (start -1.65 0) (end -3.81 0) (width 0.25) (layer F.Cu) ${p.to})
+        (segment (start 1.65 0) (end 3.81 0) (width 0.25) (layer F.Cu) ${p.from})
+        (segment (start -1.65 0) (end -3.81 0) (width 0.25) (layer B.Cu) ${p.to})
+        (segment (start 1.65 0) (end 3.81 0) (width 0.25) (layer B.Cu) ${p.from})
     )`,
 };

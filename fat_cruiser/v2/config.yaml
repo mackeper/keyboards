@@ -456,7 +456,7 @@ pcbs:
           hotswap: true
           rotation: 0
       diode:
-        what: diode
+        what: diode_with_segments
         where: true
         params:
           from: "{{colrow}}"

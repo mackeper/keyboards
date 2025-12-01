@@ -80,6 +80,10 @@ module.exports = {
               ? `
             (pad 1 thru_hole circle (at ${def_neg}3.275 -3.10) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.Mask) ${p.from})
             (pad 2 thru_hole circle (at ${def_pos}8.275 -0.90) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.Mask) ${p.to})
+
+            ${"" /* segments from pads to vias */}
+            (segment (start ${def_neg}3.275 -5.95) (end ${def_neg}3.275 -3.10) (width 0.25) (layer ${def_side}.Cu) ${p.from})
+            (segment (start ${def_pos}8.275 -3.75) (end ${def_pos}8.275 -0.90) (width 0.25) (layer ${def_side}.Cu) ${p.to})
           `
               : ""
           }
