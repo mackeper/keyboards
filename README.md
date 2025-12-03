@@ -52,11 +52,22 @@ Useful find and replace to add a value to all the coordinates in a KiCad file.
 :'<,'>s/-*\d\+\.\d\+/\=str2float(submatch(0))+13.97/`
 ```
 
-### KiCad Preferences
+### KiCad tips
+
+* Set rotation step to match your keyboard for easier rotation of components
+  * See below
+* Tools -> Clean up tracks and vias
+* Edit -> Edit teardrops
+  * Add teardrops to pads for stronger connections to tracks
+* Route -> Design Rules Checker
+  * Check for errors in your PCB design
+
+#### KiCad Preferences
 
 Set the rotation step to the same value as your keyboard's rotation.
 
 ![KiCad Preferences](./.github/images/kicad_rotation_preferences.png)
+
 
 ## Related Projects :link:
 

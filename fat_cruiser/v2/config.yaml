@@ -22,35 +22,35 @@ points:
         shift: [69, -100]
       rows:
         bottom:
-          row_net: P9
+          row_net: P010
         home:
-          row_net: P5
+          row_net: P111
         top:
-          row_net: P3
+          row_net: P113
       columns:
         pinky:
           rows.thumb.skip: true
           key:
-            col_net: P8
-            mirror.col_net: P28
+            col_net: P006
+            mirror.col_net: P031
         ring:
           key:
             stagger: 12
-            col_net: P7
-            mirror.col_net: P27
+            col_net: P008
+            mirror.col_net: P029
           rows.thumb.skip: true
         middle.key:
           stagger: 7
-          col_net: P6
-          mirror.col_net: P26
+          col_net: P022
+          mirror.col_net: P002
         index.key:
           stagger: -5
-          col_net: P4
-          mirror.col_net: P22
+          col_net: P024
+          mirror.col_net: P115
         far.key:
           stagger: -2
-          col_net: P2
-          mirror.col_net: P21
+          col_net: P100
+          mirror.col_net: P011
     thumbrow:
       anchor:
         ref: board_middle_bottom
@@ -58,19 +58,19 @@ points:
         rotate: -4
       rows:
         thumb:
-          row_net: P10
+          row_net: P009
       columns:
         middle.key:
-          col_net: P6
-          mirror.col_net: P26
+          col_net: P022
+          mirror.col_net: P002
         index.key:
-          col_net: P4
-          mirror.col_net: P22
+          col_net: P024
+          mirror.col_net: P115
           splay: -10
           origin: [-0.5cx, -0.5cy]
         far.key:
-          col_net: P2
-          mirror.col_net: P21
+          col_net: P100
+          mirror.col_net: P011
           splay: -10
           origin: [-0.5cx, -0.5cy]
   mirror:
@@ -456,7 +456,7 @@ pcbs:
           hotswap: true
           rotation: 0
       diode:
-        what: diode_with_segments
+        what: diode
         where: true
         params:
           from: "{{colrow}}"
@@ -479,7 +479,7 @@ pcbs:
           rotate: 180
         params:
           # https://tinygo.org/docs/reference/microcontrollers/nicenano/
-          VCC: "3V3"
+          VCC: "EXT_VCC"
           SDA: "P017"
           SCL: "P020"
       text_left:
