@@ -19,7 +19,7 @@ points:
   zones:
     board:
       anchor:
-        shift: [69, -100]
+        shift: [64, -100]
       rows:
         bottom:
           row_net: P010
@@ -75,7 +75,7 @@ points:
           origin: [-0.5cx, -0.5cy]
   mirror:
     ref: board_index_top
-    distance: 5*cx
+    distance: 5.1*cx
 
 outlines:
   board:
@@ -475,7 +475,7 @@ pcbs:
         what: oled_ssd1306
         where:
           ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
-          shift: [0, -14]
+          shift: [0, -13]
           rotate: 180
         params:
           # https://tinygo.org/docs/reference/microcontrollers/nicenano/
@@ -491,6 +491,7 @@ pcbs:
           text: "Fat Cruiser v2.0"
           rotation: rotation
           font_size: 1
+          add_mirror: true
       text_right:
         what: text
         where:
@@ -500,6 +501,7 @@ pcbs:
           text: "by Marcus Östling"
           rotation: -rotation
           font_size: 1
+          add_mirror: true
       m2_1:
         what: mountinghole
         where:
@@ -618,7 +620,8 @@ pcbs:
         params:
           text: "POWER"
           font_size: 1
-      silder1:
+          add_mirror: true
+      silder1_F:
         what: slider
         where:
           ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
@@ -627,6 +630,27 @@ pcbs:
         params:
           to: "VBAT2"
           from: "B+"
+      silder1_B:
+        what: slider
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [0cx, -8]
+          rotate: 180
+        params:
+          to: "VBAT2"
+          from: "B+"
+          side: "B"
+      slider3pin:
+        what: slider_3pin
+        where:
+          ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+          shift: [0cx, -0.5]
+          rotate: 180
+        params:
+          to1: "VBAT2"
+          to1_text: "VBAT2"
+          from: "B+"
+          from_text: "B+"
       # text_slider2:
       #   what: text
       #   where:
@@ -645,7 +669,7 @@ pcbs:
       #   params:
       #     to: "3V3"
       #     from: "EXT_VCC"
-      reset_button:
+      reset_button2pin:
         what: button_2pin
         where:
           ref.aggregate.parts: [board_far_top, mirror_board_far_top]
@@ -654,11 +678,22 @@ pcbs:
         params:
           to: "GND"
           from: "RESET"
+          text: "RESET"
+      reset_button4pin:
+        what: button_4pin
+        where:
+          ref.aggregate.parts: [board_far_top, mirror_board_far_top]
+          shift: [0.76cx, -1cy]
+          rotate: 180
+        params:
+          to: "GND"
+          from: "RESET"
+          text: "RESET"
       battery_jst:
         what: jstph_2silk
         where:
           ref.aggregate.parts: [board_far_top, mirror_board_far_top]
-          shift: [0.7cx, -1.5072cy]
+          shift: [0.7cx, -1.35cy]
           rotate: 0
         params:
           neg: "GND"

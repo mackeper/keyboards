@@ -67,7 +67,7 @@ module.exports = {
       (fp_line (start 15.24 -8.89) (end -17.78 -8.89) (layer B.SilkS) (width 0.15))
       (fp_line (start -17.78 -8.89) (end -17.78 8.89) (layer B.SilkS) (width 0.15))
       `;
-    const font_size = "(font (size 0.5 0.5) (thickness 0.1))";
+    const font_size = "(font (size 0.8 0.8) (thickness 0.1))";
     const left_pins = [
       { name: "GND", pad_type: "rect" },
       { name: "P006", pad_type: "circle" },

@@ -80,17 +80,17 @@ From within `fat_cruiser/v2/`:
 
 ### Parts :nut_and_bolt:
 
-| Part                                          | Price               | Url                                                                                                                     |
-| ----------------                              | ---------------     | ---------------                                                                                                         |
-| PCB                                           | €10.58 ( + €24.76 ) | [jlcpcb](https://jlcpcb.com/)                                                                                           |
-| 40 Switches (Kalih choc redpro)               | €23.96              | [splitkb](https://splitkb.com/products/kailh-low-profile-choc-switches?variant=33100108234829)                          |
-| 40 Keycaps (MoErgo POM MCC-Profile 1U Keycap) | €19.96              | [splitkb](https://splitkb.com/products/moergo-mcc-profile-1u-keycap?_pos=3&_sid=99ef29720&_ss=r&variant=42898211602691) |
-| 100 SMD Diodes                                | €2.49               | [splitkb](https://splitkb.com/products/kailh-hotswap-sockets?_pos=1&_sid=9303a7619&_ss=r)                               |
-| nice!nano v2                                  | €25.94              | [splitkb](https://splitkb.com/products/nice-nano?_pos=1&_sid=33e2bd019&_ss=r)                                           |
-| SSD1306 OLED Display                          | €5.89               | [splitkb](https://splitkb.com/products/oled-display?_pos=1&_sid=de7400663&_ss=r&variant=31226608549965)                 |
-| Kailh Hotswap Sockets                         | €7.95               | [splitkb](https://splitkb.com/products/kailh-hotswap-sockets?_pos=1&_sid=9303a7619&_ss=r)                               |
-| Battery 110 mah                               |                     |                                                                                                                         |
-| Connector                                     |                     |                                                                                                                         |
-| Power switch                                  |                     |                                                                                                                         |
-| Mill Max Low Profile Sockets                  | €11.45              | [splitkb](https://splitkb.com/products/mill-max-low-profile-sockets?variant=47060695646555)                             |
-| Total                                         | €55.12              |                                                                                                                         |
+| Part                                          | Price                       | Url                                                                                                                     |
+| ----------------                              | ---------------             | ---------------                                                                                                         |
+| PCB                                           | €12.94 (+ €17.39 shipping)  | [jlcpcb](https://jlcpcb.com/)                                                                                           |
+| 40 Switches (Kalih choc redpro)               | €23.96                      | [splitkb](https://splitkb.com/products/kailh-low-profile-choc-switches?variant=33100108234829)                          |
+| 40 Keycaps (MoErgo POM MCC-Profile 1U Keycap) | €19.96                      | [splitkb](https://splitkb.com/products/moergo-mcc-profile-1u-keycap?_pos=3&_sid=99ef29720&_ss=r&variant=42898211602691) |
+| 100 SMD Diodes                                | €2.49                       | [splitkb](https://splitkb.com/products/kailh-hotswap-sockets?_pos=1&_sid=9303a7619&_ss=r)                               |
+| nice!nano v2                                  | €25.94                      | [splitkb](https://splitkb.com/products/nice-nano?_pos=1&_sid=33e2bd019&_ss=r)                                           |
+| SSD1306 OLED Display                          | €5.89                       | [splitkb](https://splitkb.com/products/oled-display?_pos=1&_sid=de7400663&_ss=r&variant=31226608549965)                 |
+| Kailh Hotswap Sockets                         | €7.95                       | [splitkb](https://splitkb.com/products/kailh-hotswap-sockets?_pos=1&_sid=9303a7619&_ss=r)                               |
+| Battery 110 mah                               |                             |                                                                                                                         |
+| Connector                                     |                             |                                                                                                                         |
+| Power switch                                  |                             |                                                                                                                         |
+| Mill Max Low Profile Sockets                  | €11.45                      | [splitkb](https://splitkb.com/products/mill-max-low-profile-sockets?variant=47060695646555)                             |
+| Total                                         | €55.12                      |                                                                                                                         |

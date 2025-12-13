@@ -7,10 +7,16 @@ module.exports = {
     GND: { type: "net", value: "GND" },
   },
   body: (p) => {
-    const width = 26.1;
-    const height = 26.2;
+    const width1 = 26.1; // https://splitkb.com/products/oled-display?variant=31226608549965 SKU CMP-OD1-064-SNG
+    const width2 = 27.6; // AZDelivery 0.96" OLED
+    const height1 = 26.2;
+    const height2 = 27;
+    const width = (width1 + width2) / 2;
+    const height = (height1 + height2) / 2;
     const holeDrillSize = 2;
+    const holeDrillSize2 = 4;
     const holeSize = 6;
+    const holeSize2 = 8;
     const viasDistance = 2.54;
     const viaDrillSize = 1.0922;
     const viaSize = 1.7526;
@@ -37,27 +43,40 @@ module.exports = {
             (fp_text user "${p.ref}" (at 0 0) (layer B.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15)) (justify mirror)))
 
             ${"" /* symbols */}
-            (fp_line (start ${-width / 2} ${-height / 2}) (end ${width / 2} ${-height / 2}) (layer F.SilkS) (width 0.1))
-            (fp_line (start ${width / 2} ${-height / 2}) (end ${width / 2} ${height / 2}) (layer F.SilkS) (width 0.1))
-            (fp_line (start ${width / 2} ${height / 2}) (end ${-width / 2} ${height / 2}) (layer F.SilkS) (width 0.1))
-            (fp_line (start ${-width / 2} ${height / 2}) (end ${-width / 2} ${-height / 2}) (layer F.SilkS) (width 0.1))
+            (fp_line (start ${-width1 / 2} ${-height1 / 2}) (end ${width1 / 2} ${-height1 / 2}) (layer F.SilkS) (width 0.1))
+            (fp_line (start ${width1 / 2} ${-height1 / 2}) (end ${width1 / 2} ${height1 / 2}) (layer F.SilkS) (width 0.1))
+            (fp_line (start ${width1 / 2} ${height1 / 2}) (end ${-width1 / 2} ${height1 / 2}) (layer F.SilkS) (width 0.1))
+            (fp_line (start ${-width1 / 2} ${height1 / 2}) (end ${-width1 / 2} ${-height1 / 2}) (layer F.SilkS) (width 0.1))
 
-            (fp_line (start ${-width / 2} ${-height / 2}) (end ${width / 2} ${-height / 2}) (layer B.SilkS) (width 0.1))
-            (fp_line (start ${width / 2} ${-height / 2}) (end ${width / 2} ${height / 2}) (layer B.SilkS) (width 0.1))
-            (fp_line (start ${width / 2} ${height / 2}) (end ${-width / 2} ${height / 2}) (layer B.SilkS) (width 0.1))
-            (fp_line (start ${-width / 2} ${height / 2}) (end ${-width / 2} ${-height / 2}) (layer B.SilkS) (width 0.1))
+            (fp_line (start ${-width1 / 2} ${-height1 / 2}) (end ${width1 / 2} ${-height1 / 2}) (layer B.SilkS) (width 0.1))
+            (fp_line (start ${width1 / 2} ${-height1 / 2}) (end ${width1 / 2} ${height1 / 2}) (layer B.SilkS) (width 0.1))
+            (fp_line (start ${width1 / 2} ${height1 / 2}) (end ${-width1 / 2} ${height1 / 2}) (layer B.SilkS) (width 0.1))
+            (fp_line (start ${-width1 / 2} ${height1 / 2}) (end ${-width1 / 2} ${-height1 / 2}) (layer B.SilkS) (width 0.1))
 
             ${"" /* mouting holes */} 
-            (pad 1 thru_hole circle (at ${-width / 2 + holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) 
-            (pad 2 thru_hole circle (at ${width / 2 - holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) 
-            (pad 3 thru_hole circle (at ${width / 2 - holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})
-            (pad 4 thru_hole circle (at ${-width / 2 + holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})
+            ${"" /* Why 1.6? */}
+            ${"" /* Use normal holeSize for positioning */}
+            ${"" /* (pad 1 thru_hole circle (at ${-width1 / 2 + holeSize / 2} ${height1 / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) */}
+            ${"" /* (pad 1 thru_hole circle (at ${-width2 / 2 + holeSize / 2} ${height2 / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) */}
+            (pad 1 thru_hole circle (at ${-width / 2 + holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize2 - 1.6} ${holeSize2 - 1.6}) (drill ${holeDrillSize2}) (layers *.Cu *.Mask) ${p.GND}) 
+
+            ${"" /* (pad 2 thru_hole circle (at ${width1 / 2 - holeSize / 2} ${height1 / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) */}
+            ${"" /* (pad 2 thru_hole circle (at ${width2 / 2 - holeSize / 2} ${height2 / 2 - holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND}) */}
+            (pad 2 thru_hole circle (at ${width / 2 - holeSize / 2} ${height / 2 - holeSize / 2}) (size ${holeSize2 - 1.6} ${holeSize2 - 1.6}) (drill ${holeDrillSize2}) (layers *.Cu *.Mask) ${p.GND}) 
+
+            ${"" /* (pad 3 thru_hole circle (at ${width1 / 2 - holeSize / 2} ${-height1 / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})*/}
+            ${"" /* (pad 3 thru_hole circle (at ${width2 / 2 - holeSize / 2} ${-height2 / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})*/}
+            (pad 3 thru_hole circle (at ${width / 2 - holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize2 - 1.6} ${holeSize2 - 1.6}) (drill ${holeDrillSize2}) (layers *.Cu *.Mask) ${p.GND})
+
+            ${"" /* (pad 4 thru_hole circle (at ${-width1 / 2 + holeSize / 2} ${-height1 / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})*/}
+            ${"" /* (pad 4 thru_hole circle (at ${-width2 / 2 + holeSize / 2} ${-height2 / 2 + holeSize / 2}) (size ${holeSize - 1.6} ${holeSize - 1.6}) (drill ${holeDrillSize}) (layers *.Cu *.Mask) ${p.GND})*/}
+            (pad 4 thru_hole circle (at ${-width / 2 + holeSize / 2} ${-height / 2 + holeSize / 2}) (size ${holeSize2 - 1.6} ${holeSize2 - 1.6}) (drill ${holeDrillSize2}) (layers *.Cu *.Mask) ${p.GND})
 
             ${"" /* vias */}
-            ${via(5, -viasDistance * 1.5, height / 2 - 1.65, p.SDA)}
-            ${via(6, -viasDistance * 0.5, height / 2 - 1.65, p.SCL)} 
-            ${via(7, viasDistance * 0.5, height / 2 - 1.65, p.VCC)}
-            ${via(8, viasDistance * 1.5, height / 2 - 1.65, p.GND)}
+            ${via(5, -viasDistance * 1.5, height1 / 2 - 1.65, p.SDA)}
+            ${via(6, -viasDistance * 0.5, height1 / 2 - 1.65, p.SCL)} 
+            ${via(7, viasDistance * 0.5, height1 / 2 - 1.65, p.VCC)}
+            ${via(8, viasDistance * 1.5, height1 / 2 - 1.65, p.GND)}
 
 
             ${"" /* text */} 
