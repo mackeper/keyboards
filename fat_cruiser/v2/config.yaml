@@ -10,6 +10,7 @@ units:
   screwSize: 1 # M2 screws
   insetSize: 2 # M2 screws
   mountSize: 3 # M2 screws
+  plate_thickness: 1.5
 
 points:
   rotate: rotation
@@ -83,7 +84,7 @@ outlines:
       operation: stack
       points:
         - ref: board_pinky_top
-          shift: [-0.6cx, 0.6cy] 
+          shift: [-0.6cx, 0.6cy]
         - ref: board_pinky_top
           shift: [0cx, 0.6cy]
         - ref: board_pinky_top
@@ -181,7 +182,7 @@ outlines:
       fillet: 2
       points:
         - ref: board_pinky_top
-          shift: [-0.6cx-padding, 0.6cy+padding] 
+          shift: [-0.6cx-padding, 0.6cy+padding]
         - ref: board_pinky_top
           shift: [0cx-padding, 0.6cy+padding]
         - ref: board_pinky_top
@@ -266,6 +267,76 @@ outlines:
           shift: [1.86cx-padding, -0.6cy-padding]
         - ref: board_pinky_bottom
           shift: [-0.6cx-padding, -0.6cy-padding]
+  microcontroller_cable_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_top, mirror_board_far_top]
+        shift: [0, 0.4cy+padding - 3] # Same as board_far_top bottom edge - size/2
+      size: [13, 6]
+      fillet: 1.5
+  microcontroller_plate_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_home, mirror_board_far_home]
+        shift: [0, -1]
+      size: [18, 38]
+      fillet: 1
+  display_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_bottom, mirror_board_far_bottom]
+        shift: [0, -13]
+      size: [28, 28]
+      fillet: 1
+  reset_button_2pin_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_top, mirror_board_far_top]
+        shift: [0.76cx, -0.6cy]
+      size: [4, 7]
+      fillet: 0
+  reset_button_4pin_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_top, mirror_board_far_top]
+        shift: [0.7cx, -1cy]
+      size: [10, 8]
+      fillet: 0
+  battery_and_reset_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_top, mirror_board_far_top]
+        shift: [0.7cx, -20]
+      size: [12, 27]
+      fillet: 1
+  slider_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0, -8]
+      size: [10, 4]
+      fillet: 1
+  slider_lever_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0, -10]
+      size: [5, 4]
+      fillet: 0
+  slider_3pin_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0, -0.5]
+      size: [10, 5]
+      fillet: 1
+  battery_jst_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [board_far_top, mirror_board_far_top]
+        shift: [0.7cx, -26.26]
+      size: [9, 12]
+      fillet: 0
   mouting_holes:
     - what: circle
       radius: screwSize
@@ -378,7 +449,7 @@ outlines:
       where:
         ref: mirror_board_ring_top
         shift: [-0.75cx, 0.05cy]
-  _mouting_holes_with_padding2: 
+  _mouting_holes_with_padding2:
     - what: circle
       radius: insetSize
       where:
@@ -702,28 +773,28 @@ pcbs:
 cases:
   _bottom:
     - name: cutout_board
-      extrude: 1 # 1 mm thick
+      extrude: plate_thickness
   _keys:
     - name: cutout_keys
-      extrude: 1
+      extrude: plate_thickness
   _bottom_with_padding:
     - name: board_with_padding
-      extrude: 1
+      extrude: plate_thickness
   _outerWall:
     - name: board_with_padding
-      extrude: 4
+      extrude: 8
   _innerWall:
     - name: cutout_board
-      extrude: 4
+      extrude: 8
   _mounting_holes:
     - name: mouting_holes
-      extrude: 4
+      extrude: 10plate_thickness # 1b extrude more to ensure through cut
   _mounting_holes_with_padding:
     - name: _mouting_holes_with_padding
-      extrude: 2
+      extrude: 3.2 # Distance between case button and pcb
   _mounting_holes_inset:
     - name: _mouting_holes_with_padding2
-      extrude: 1
+      extrude: plate_thickness
   _wall:
     - what: case
       name: _outerWall
@@ -731,6 +802,38 @@ cases:
     - what: case
       name: _innerWall
       operation: subtract
+  # _microcontroller_cable_cutout:
+  #   - name: microcontroller_cable_cutout
+  #     extrude: 4
+  #     shift: [0, 0, 4]
+  #     rotate: [90, 0, 0]
+  _microcontroller_plate_cutout:
+    - name: microcontroller_plate_cutout
+      extrude: plate_thickness
+  _display_cutout:
+    - name: display_cutout
+      extrude: plate_thickness
+  _reset_button_2pin_cutout:
+    - name: reset_button_2pin_cutout
+      extrude: plate_thickness
+  _reset_button_4pin_cutout:
+    - name: reset_button_4pin_cutout
+      extrude: plate_thickness
+  _battery_and_reset_cutout:
+    - name: battery_and_reset_cutout
+      extrude: plate_thickness
+  _slider_cutout:
+    - name: slider_cutout
+      extrude: plate_thickness
+  _slider_lever_cutout:
+    - name: slider_lever_cutout
+      extrude: plate_thickness
+  _slider_3pin_cutout:
+    - name: slider_3pin_cutout
+      extrude: plate_thickness
+  _battery_jst_cutout:
+    - name: battery_jst_cutout
+      extrude: plate_thickness
   case:
     - what: case
       name: _bottom_with_padding
@@ -747,6 +850,9 @@ cases:
     - what: case
       name: _wall
       operation: add
+    - what: case
+      name: _microcontroller_cable_cutout
+      operation: subtract
   plate:
     - what: case
       name: _bottom
@@ -756,4 +862,31 @@ cases:
       operation: subtract
     - what: case
       name: _mounting_holes
+      operation: subtract
+    - what: case
+      name: _microcontroller_plate_cutout
+      operation: subtract
+    - what: case
+      name: _display_cutout
+      operation: subtract
+    - what: case
+      name: _reset_button_2pin_cutout
+      operation: subtract
+    - what: case
+      name: _reset_button_4pin_cutout
+      operation: subtract
+    - what: case
+      name: _battery_and_reset_cutout
+      operation: subtract
+    - what: case
+      name: _slider_cutout
+      operation: subtract
+    - what: case
+      name: _slider_lever_cutout
+      operation: subtract
+    - what: case
+      name: _slider_3pin_cutout
+      operation: subtract
+    - what: case
+      name: _battery_jst_cutout
       operation: subtract

@@ -13,7 +13,7 @@ See [keymap layout](./qmk/readme.md).
 <details>
   <summary>Click to expand</summary>
   <div align="center">
-    <img src="./images/kicad.jpg" />
+    <img src="./images/kicad_final.jpg" />
   </div>
 <div align="center">
 </details>
