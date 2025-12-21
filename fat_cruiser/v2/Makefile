@@ -18,7 +18,7 @@ endif
 
 all: build update_kicad_file stl
 
-build:	
+build:
 	@echo "\n=== Build ergogen ==="
 	ergogen .
 
@@ -27,6 +27,10 @@ stl:
 	@for i in $(OUTPUT_DIR)/cases/*.jscad; do \
 		openjscad "$$i" -o "$${i%.jscad}.stl"; \
 	done
+
+stl_name:
+	@echo "\n=== Compile STL $(NAME) with jscad cli ==="
+	@openjscad "$(OUTPUT_DIR)/cases/$(NAME).jscad" -o "$(OUTPUT_DIR)/cases/$(NAME).jscad.stl"
 
 stl_v2:
 	@for i in $(OUTPUT_DIR)/cases/*.jscad; do npx @jscad/cli "$i" -of stla; done

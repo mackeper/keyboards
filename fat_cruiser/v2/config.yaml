@@ -7,10 +7,17 @@ units:
   pcx: cx + 8
   pcy: cy + 8
   padding: 4
+  margin: 0.4
+
+  plate_thickness: 1.5
+
   screwSize: 1 # M2 screws
   insetSize: 2 # M2 screws
   mountSize: 3 # M2 screws
-  plate_thickness: 1.5
+
+  lever_width: 18
+  lever_height: 8
+  lever_notch: 4
 
 points:
   rotate: rotation
@@ -109,6 +116,7 @@ outlines:
           shift: [0.6cx, 0.6cy]
         - ref: board_far_top
           shift: [0.6cx, 0.4cy]
+
         - ref: mirror_board_far_top
           shift: [0.6cx, 0.4cy]
         - ref: mirror_board_far_top
@@ -151,6 +159,7 @@ outlines:
           shift: [0.6cx, -0.6cy]
         - ref: mirror_thumbrow_far_thumb
           shift: [0.6cx, -0.3cy]
+
         - ref: thumbrow_far_thumb
           shift: [0.6cx, -0.3cy]
         - ref: thumbrow_far_thumb
@@ -167,19 +176,109 @@ outlines:
           shift: [1.86cx, -0.6cy]
         - ref: board_pinky_bottom
           shift: [-0.6cx, -0.6cy]
+
   cutout_board:
     - what: outline
       name: board
       fillet: 1.5
-  cutout_keys:
-    - what: rectangle
-      where: true
-      size: [cx-4, cy-3]
-      fillet: 1
-  board_with_padding:
+
+  # ---- Case ----
+  board_with_small_margin: # This will make up the margin between board and case outer wall
     - what: polygon
       operation: stack
-      fillet: 2
+      fillet: 1.5
+      points:
+        - ref: board_pinky_top
+          shift: [-0.6cx-margin, 0.6cy+margin]
+        - ref: board_pinky_top
+          shift: [0cx-margin, 0.6cy+margin]
+        - ref: board_pinky_top
+          shift: [0cx-margin, 1cy+margin]
+        - ref: board_pinky_top
+          shift: [0.4cx-margin, 1cy+margin]
+        - ref: board_ring_top
+          shift: [-0.6cx-margin, 0.6cy+margin]
+        - ref: board_ring_top
+          shift: [0.4cx-margin, 0.6cy+margin]
+        - ref: board_middle_top
+          shift: [-0.6cx-margin, 0.6cy+margin]
+        - ref: board_middle_top
+          shift: [0.6cx+margin, 0.6cy+margin]
+        - ref: board_index_top
+          shift: [-0.4cx+margin, 0.62cy+margin]
+        - ref: board_index_top
+          shift: [0.57cx+0.9margin, 0.62cy+margin]
+        - ref: board_far_top
+          shift: [-0.4cx+1.2margin, 0.57cy+margin]
+        - ref: board_far_top
+          shift: [0.6cx+margin, 0.6cy+margin]
+        - ref: board_far_top
+          shift: [0.6cx+1.4margin, 0.4cy+margin]
+        # ----- mirrored -----
+        - ref: mirror_board_far_top
+          shift: [0.6cx+1.4margin, 0.4cy+margin]
+        - ref: mirror_board_far_top
+          shift: [0.6cx+margin, 0.6cy+margin]
+        - ref: mirror_board_far_top
+          shift: [-0.4cx+1.2margin, 0.57cy+margin]
+        - ref: mirror_board_index_top
+          shift: [0.57cx+0.9margin, 0.62cy+margin]
+        - ref: mirror_board_index_top
+          shift: [-0.4cx+margin, 0.62cy+margin]
+        - ref: mirror_board_middle_top
+          shift: [0.6cx+margin, 0.6cy+margin]
+        - ref: mirror_board_middle_top
+          shift: [-0.6cx-margin, 0.6cy+margin]
+        - ref: mirror_board_ring_top
+          shift: [0.4cx-margin, 0.6cy+margin]
+        - ref: mirror_board_ring_top
+          shift: [-0.6cx-margin, 0.6cy+margin]
+        - ref: mirror_board_pinky_top
+          shift: [0.4cx-margin, 1cy+margin]
+        - ref: mirror_board_pinky_top
+          shift: [0cx-margin, 1cy+margin]
+        - ref: mirror_board_pinky_top
+          shift: [0cx-margin, 0.6cy+margin]
+        - ref: mirror_board_pinky_top
+          shift: [-0.6cx-margin, 0.6cy+margin]
+        - ref: mirror_board_pinky_bottom
+          shift: [-0.6cx-margin, -0.6cy-margin]
+        - ref: mirror_board_pinky_bottom
+          shift: [1.86cx-margin, -0.6cy-margin]
+        - ref: mirror_thumbrow_middle_thumb
+          shift: [-0.6cx-margin, -0.6cy-margin]
+        - ref: mirror_thumbrow_middle_thumb
+          shift: [0.5cx-margin, -0.6cy-margin]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [-0.5cx-margin, -0.6cy-margin]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.5cx-margin, -0.6cy-margin]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.6cx+margin, -0.6cy-margin]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.6cx+margin, -0.3cy-margin]
+
+        - ref: thumbrow_far_thumb
+          shift: [0.6cx+margin, -0.3cy-margin]
+        - ref: thumbrow_far_thumb
+          shift: [0.6cx+margin, -0.6cy-margin]
+        - ref: thumbrow_far_thumb
+          shift: [0.5cx-margin, -0.6cy-margin]
+        - ref: thumbrow_far_thumb
+          shift: [-0.5cx-margin, -0.6cy-margin]
+        - ref: thumbrow_middle_thumb
+          shift: [0.5cx-margin, -0.6cy-margin]
+        - ref: thumbrow_middle_thumb
+          shift: [-0.5cx-margin, -0.6cy-margin]
+        - ref: board_pinky_bottom
+          shift: [1.86cx-margin, -0.6cy-margin]
+        - ref: board_pinky_bottom
+          shift: [-0.6cx-margin, -0.6cy-margin]
+
+  board_with_padding: # This will make up the case outer wall
+    - what: polygon
+      operation: stack
+      fillet: 1.5
       points:
         - ref: board_pinky_top
           shift: [-0.6cx-padding, 0.6cy+padding]
@@ -247,14 +346,14 @@ outlines:
         - ref: mirror_thumbrow_far_thumb
           shift: [0.5cx-padding, -0.6cy-padding]
         - ref: mirror_thumbrow_far_thumb
-          shift: [0.6cx-padding, -0.6cy-padding]
-        # - ref: mirror_thumbrow_far_thumb
-        #   shift: [0.6cx+padding, -0.3cy-padding]
-        # ----- original -----
-        # - ref: thumbrow_far_thumb
-        #   shift: [0.6cx+padding, -0.3cy-padding]
+          shift: [0.6cx+padding, -0.6cy-padding]
+        - ref: mirror_thumbrow_far_thumb
+          shift: [0.6cx+padding, -0.3cy-padding]
+
         - ref: thumbrow_far_thumb
-          shift: [0.6cx-padding, -0.6cy-padding]
+          shift: [0.6cx+padding, -0.3cy-padding]
+        - ref: thumbrow_far_thumb
+          shift: [0.6cx+padding, -0.6cy-padding]
         - ref: thumbrow_far_thumb
           shift: [0.5cx-padding, -0.6cy-padding]
         - ref: thumbrow_far_thumb
@@ -267,6 +366,46 @@ outlines:
           shift: [1.86cx-padding, -0.6cy-padding]
         - ref: board_pinky_bottom
           shift: [-0.6cx-padding, -0.6cy-padding]
+
+  # ---- Case cutouts ----
+  slider_case_cutout:
+    - what: rectangle
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [0, -10]
+      size: [18, 5]
+      fillet: 1
+  slider_lever_case_cutout:
+    - what: polygon
+      where:
+        ref.aggregate.parts: [thumbrow_far_thumb, mirror_thumbrow_far_thumb]
+        shift: [-lever_notch-14, -lever_notch-12]
+      points:
+        #   __________________
+        #   |                |
+        # __|                |__
+        # |                    |
+        # |____________________|
+        - shift: [lever_width/2, lever_height/2]
+
+        - shift: [lever_width, 0]
+        - shift: [0, -lever_notch]
+        - shift: [lever_notch, 0]
+        - shift: [0, -lever_notch]
+
+        - shift: [-lever_width - 2lever_notch, 0]
+
+        - shift: [0, lever_notch]
+        - shift: [lever_notch, 0]
+        - shift: [0, lever_notch]
+      fillet: 1.5
+
+  # ---- Plate cutouts ----
+  cutout_keys:
+    - what: rectangle
+      where: true
+      size: [cx-4, cy-3]
+      fillet: 1
   microcontroller_cable_cutout:
     - what: rectangle
       where:
@@ -337,6 +476,8 @@ outlines:
         shift: [0.7cx, -26.26]
       size: [9, 12]
       fillet: 0
+
+  # ---- Mounting holes ----
   mouting_holes:
     - what: circle
       radius: screwSize
@@ -774,8 +915,10 @@ cases:
   _bottom:
     - name: cutout_board
       extrude: plate_thickness
-  _keys:
-    - name: cutout_keys
+
+  # ---- Case ----
+  _bottom_with_small_margin:
+    - name: board_with_small_margin
       extrude: plate_thickness
   _bottom_with_padding:
     - name: board_with_padding
@@ -784,17 +927,8 @@ cases:
     - name: board_with_padding
       extrude: 8
   _innerWall:
-    - name: cutout_board
+    - name: board_with_small_margin
       extrude: 8
-  _mounting_holes:
-    - name: mouting_holes
-      extrude: 10plate_thickness # 1b extrude more to ensure through cut
-  _mounting_holes_with_padding:
-    - name: _mouting_holes_with_padding
-      extrude: 3.2 # Distance between case button and pcb
-  _mounting_holes_inset:
-    - name: _mouting_holes_with_padding2
-      extrude: plate_thickness
   _wall:
     - what: case
       name: _outerWall
@@ -802,11 +936,25 @@ cases:
     - what: case
       name: _innerWall
       operation: subtract
-  # _microcontroller_cable_cutout:
-  #   - name: microcontroller_cable_cutout
-  #     extrude: 4
-  #     shift: [0, 0, 4]
-  #     rotate: [90, 0, 0]
+
+  # ---- Case cutouts ----
+  _slider_lever_case_cutout:
+    - name: slider_lever_case_cutout
+      extrude: 8
+    - name: slider_case_cutout
+      extrude: 8
+      rotate: [90, 0, 0]
+      shift: [0, 0, 4]
+  _microcontroller_cable_plate_cutout:
+    - name: microcontroller_cable_cutout
+      extrude: 4
+      rotate: [0, 0, 0]
+      shift: [0, -2, 0]
+
+  # ---- Plate cutouts ----
+  _keys:
+    - name: cutout_keys
+      extrude: plate_thickness
   _microcontroller_plate_cutout:
     - name: microcontroller_plate_cutout
       extrude: plate_thickness
@@ -834,6 +982,23 @@ cases:
   _battery_jst_cutout:
     - name: battery_jst_cutout
       extrude: plate_thickness
+  _microcontroller_cable_case_cutout:
+    - name: microcontroller_cable_cutout
+      extrude: 4
+      rotate: [90, 0, 0]
+      shift: [0, 0, 8]
+
+  # ---- Mounting holes ----
+  _mounting_holes:
+    - name: mouting_holes
+      extrude: 10plate_thickness # 1b extrude more to ensure through cut
+  _mounting_holes_with_padding:
+    - name: _mouting_holes_with_padding
+      extrude: 3.2 # Distance between case button and pcb
+  _mounting_holes_inset:
+    - name: _mouting_holes_with_padding2
+      extrude: plate_thickness
+
   case:
     - what: case
       name: _bottom_with_padding
@@ -851,7 +1016,10 @@ cases:
       name: _wall
       operation: add
     - what: case
-      name: _microcontroller_cable_cutout
+      name: _slider_lever_case_cutout
+      operation: subtract
+    - what: case
+      name: _microcontroller_cable_case_cutout
       operation: subtract
   plate:
     - what: case
@@ -889,4 +1057,7 @@ cases:
       operation: subtract
     - what: case
       name: _battery_jst_cutout
+      operation: subtract
+    - what: case
+      name: _microcontroller_cable_plate_cutout
       operation: subtract
