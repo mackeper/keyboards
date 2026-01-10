@@ -12,8 +12,8 @@ units:
   plate_thickness: 1.5
 
   screwSize: 1 # M2 screws
-  insetSize: 2 # M2 screws
-  mountSize: 3 # M2 screws
+  insetSize: 2.5 # M2 screws
+  mountSize: 4 # M2 screws
 
   lever_width: 18
   lever_height: 8
@@ -30,35 +30,35 @@ points:
         shift: [64, -100]
       rows:
         bottom:
-          row_net: P010
+          row_net: P010 # D16
         home:
-          row_net: P111
+          row_net: P111 # D14
         top:
-          row_net: P113
+          row_net: P113 # D15
       columns:
         pinky:
           rows.thumb.skip: true
           key:
-            col_net: P006
-            mirror.col_net: P031
+            col_net: P006 # D1
+            mirror.col_net: P031 # D21
         ring:
           key:
             stagger: 12
-            col_net: P008
-            mirror.col_net: P029
+            col_net: P008 # D0
+            mirror.col_net: P029 # D20
           rows.thumb.skip: true
         middle.key:
           stagger: 7
-          col_net: P022
-          mirror.col_net: P002
+          col_net: P022 # D4
+          mirror.col_net: P002 # D19
         index.key:
           stagger: -5
-          col_net: P024
-          mirror.col_net: P115
+          col_net: P024 # D5
+          mirror.col_net: P115 # D18
         far.key:
           stagger: -2
-          col_net: P100
-          mirror.col_net: P011
+          col_net: P100 # D6
+          mirror.col_net: P011 # D7
     thumbrow:
       anchor:
         ref: board_middle_bottom
@@ -66,7 +66,7 @@ points:
         rotate: -4
       rows:
         thumb:
-          row_net: P009
+          row_net: P009 # D10
       columns:
         middle.key:
           col_net: P022
@@ -994,10 +994,13 @@ cases:
       extrude: 10plate_thickness # 1b extrude more to ensure through cut
   _mounting_holes_with_padding:
     - name: _mouting_holes_with_padding
-      extrude: 3.2 # Distance between case button and pcb
+      extrude: 3.8 # Distance between case button and pcb
   _mounting_holes_inset:
     - name: _mouting_holes_with_padding2
-      extrude: plate_thickness
+      extrude: plate_thickness + 0.5
+
+  board:
+    - name: board
 
   case:
     - what: case
